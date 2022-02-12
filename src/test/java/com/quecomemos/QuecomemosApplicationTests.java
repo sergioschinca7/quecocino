@@ -1,4 +1,4 @@
-package com.cocina.quecomemos;
+package com.quecomemos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
