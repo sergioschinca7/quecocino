@@ -2,23 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.quecomemos.Ingredientes;
-
+package com.quecomemos.receta;
 import java.util.List;
+
 /**
  *
  * @author Sergio
  */
-
-public interface IngredienteServicio {
+public interface RecetaServicio {
     
-    public List<Ingrediente> listar();
+    public List<Receta> listarReceta();
     
-    public void eliminar(Integer id);
+    public void eliminarReceta(Integer id);
     
-    public void crear(Ingrediente ingrediente);
+    public void crearReceta(Receta receta);
     
-    public Ingrediente encontrarPorId(Integer id);
-    
+    public Receta encontrarRecetaPorId(Integer id);
     
 }

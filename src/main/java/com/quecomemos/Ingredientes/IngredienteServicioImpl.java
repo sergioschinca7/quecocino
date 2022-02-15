@@ -41,7 +41,6 @@ public class IngredienteServicioImpl implements IngredienteServicio{
     public Ingrediente encontrarPorId(Integer id) {
         
         return ingredienteRepositorio.findById(id).orElse(null);
-
     }
     
 }
