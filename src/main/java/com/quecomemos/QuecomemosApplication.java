@@ -1,4 +1,4 @@
-package com.cocina.quecomemos;
+package com.quecomemos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
