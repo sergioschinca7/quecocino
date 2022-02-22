@@ -17,6 +17,5 @@ public interface RecetaServicio {
     
     public void crearReceta(Receta receta);
     
-    public Receta encontrarRecetaPorId(Integer id);
-    
+    public Receta encontrarRecetaPorId(Integer id);    
 }

@@ -8,18 +8,17 @@ package com.quecomemos.enumeraciones;
  *
  * @author Sergio
  */
-
 import lombok.Getter;
 
-public enum Complejidad {
+public enum ValorCalorico {
     
-    SENCILLA("Sencilla"), MEDIA("Media"), DIFICIL("Difícil");
+    BAJO("Bajo"), MEDIO("Medio"), ALTO("Alto");
     
     @Getter
-    private String displayName;
+    private String nombre;
 
-    Complejidad(String displayName) {
-        this.displayName = displayName;
+    ValorCalorico(String nombre) {
+        this.nombre = nombre;
     }
     
 }

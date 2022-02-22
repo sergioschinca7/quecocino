@@ -4,6 +4,7 @@
  */
 package com.quecomemos.receta;
 
+import com.quecomemos.Ingredientes.Ingrediente;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,5 +43,5 @@ public class RecetaServicioImpl implements RecetaServicio{
         return recetaRepositorio.findById(id).orElse(null);
 
     }
-    
+
 }
