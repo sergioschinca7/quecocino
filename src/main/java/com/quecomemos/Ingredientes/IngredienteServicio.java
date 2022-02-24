@@ -4,6 +4,7 @@
  */
 package com.quecomemos.Ingredientes;
 
+import com.quecomemos.Errores.ErrorServicio;
 import java.util.List;
 /**
  *
@@ -20,5 +21,10 @@ public interface IngredienteServicio {
     
     public Ingrediente encontrarPorId(Integer id);
     
+    public Ingrediente encontrarPorNombre(String nombre) throws ErrorServicio;
+    
+    public Ingrediente validarIngrediente(Ingrediente ingrediente) throws ErrorServicio;
+
+
     
 }

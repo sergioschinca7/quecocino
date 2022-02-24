@@ -6,14 +6,20 @@ package com.quecomemos.enumeraciones;
 
 import lombok.Getter;
 
-public enum Complejidad {
+/**
+ *
+ * @author Sergio
+ */
+public enum Categoria {
     
-    SENCILLA("Sencilla"), MEDIA("Media"), DIFICIL("Difícil");
+        DESAYUNO("Desayuno"), ALMUERZO("Almuerzo"), MERIENDA("Merienda"),
+        CENA("Cena"), POSTRE("Postre"), PASTAS("Pastas"), ENSALADAS("Ensalada"),
+        CARNES("Carnes"), PESCADO("Pescados"),VEGETARIANO("Vegetariano"), VEGANO("Vegano");
     
     @Getter
     private String displayName;
 
-    Complejidad(String displayName) {
+    Categoria(String displayName) {
         this.displayName = displayName;
     }
     

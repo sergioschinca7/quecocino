@@ -5,12 +5,14 @@
 package com.quecomemos.receta;
 
 import com.quecomemos.Ingredientes.Ingrediente;
+import com.quecomemos.enumeraciones.Categoria;
 import com.quecomemos.enumeraciones.Complejidad;
+import com.quecomemos.enumeraciones.ValorCalorico;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,6 +23,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -37,7 +40,7 @@ public class Receta implements Serializable {
     private Integer id;
 
     private String nombre;
-
+    @Column(length = 4000)
     private String procedimiento;
 
     private String duracion;
@@ -45,15 +48,26 @@ public class Receta implements Serializable {
     @Enumerated(EnumType.STRING)
     private Complejidad complejidad;
 
-    private String caloriasTotales;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
+    
+        @Enumerated(EnumType.STRING)
+    private ValorCalorico valorCalorico;
+    
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(name = "receta_ingredientes", joinColumns = {
         @JoinColumn(name = "receta_id")}, inverseJoinColumns = {
         @JoinColumn(name = "ingrediente_id")
     }
     )
-    private List<Ingrediente> ingredientes;
+    private List<Ingrediente> ingredientes = new ArrayList<>();
+
+    private ArrayList<String> cantidad = new ArrayList();
+
+    public Ingrediente getIngrediente(int i) {
+        return this.ingredientes.get(i);
+    }
 
     public Integer getId() {
         return id;
@@ -75,6 +89,15 @@ public class Receta implements Serializable {
         return procedimiento;
     }
 
+    public ValorCalorico getValorCalorico() {
+        return valorCalorico;
+    }
+
+    public void setValorCalorico(ValorCalorico valorCalorico) {
+        this.valorCalorico = valorCalorico;
+    }
+    
+
     public void setProcedimiento(String procedimiento) {
         this.procedimiento = procedimiento;
     }
@@ -95,12 +118,12 @@ public class Receta implements Serializable {
         this.complejidad = complejidad;
     }
 
-    public String getCaloriasTotales() {
-        return caloriasTotales;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setCaloriasTotales(String caloriasTotales) {
-        this.caloriasTotales = caloriasTotales;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public List<Ingrediente> getIngredientes() {
@@ -111,8 +134,18 @@ public class Receta implements Serializable {
         this.ingredientes = ingredientes;
     }
 
+    public ArrayList<String> getCantidad() {
+        return cantidad;
+    }
 
+    public void setCantidad(ArrayList<String> cantidad) {
+        this.cantidad = cantidad;
+    }
 
+    public void setearCantidad(String cant) {
 
+        cantidad.add(cant);
+
+    }
 
 }

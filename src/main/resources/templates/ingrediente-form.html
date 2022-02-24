@@ -13,13 +13,10 @@
             <input th:field="*{idIngrediente}" type="hidden">
             <label>Nombre</label>
             <input type="text" th:field="*{nombreIngrediente}">
-            
-            <label>Ingrese la cantidad</label>
-            <input type="text" th:field="*{cantidad}">
-            <label>cantidad Calorias</label>
-            <input type="text" th:field="*{cantidadCalorias}">
              
             <input type="submit" value="guardar">
+            
+            <p th:if="${error} !=null" th:text="${error}"></p>
 
         </form>
     </div>

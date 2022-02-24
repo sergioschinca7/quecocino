@@ -4,7 +4,10 @@
  */
 package com.quecomemos.receta;
 
+import com.quecomemos.Ingredientes.Ingrediente;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -13,5 +16,15 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RecetaRepositorio extends JpaRepository<Receta, Integer>{
+    
+     @Query("SELECT r FROM Receta r WHERE r.nombre = :nombre")
+    public Receta buscarRecetaPorNombre(@Param("nombre") String nombre);
+    
+    
+
+    
+    
+    
+    
     
 }
