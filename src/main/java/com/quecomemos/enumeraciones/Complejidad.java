@@ -4,6 +4,14 @@
  */
 package com.quecomemos.enumeraciones;
 
+<<<<<<< HEAD
+=======
+/**
+ *
+ * @author Sergio
+ */
+
+>>>>>>> sergio
 import lombok.Getter;
 
 public enum Complejidad {

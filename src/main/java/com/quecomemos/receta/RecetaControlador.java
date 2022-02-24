@@ -4,16 +4,31 @@
  */
 package com.quecomemos.receta;
 
+<<<<<<< HEAD
 import com.quecomemos.Errores.ErrorServicio;
 import com.quecomemos.Ingredientes.Ingrediente;
 import com.quecomemos.Ingredientes.IngredienteServicio;
 import java.util.ArrayList;
+=======
+import com.quecomemos.Ingredientes.Ingrediente;
+import com.quecomemos.Ingredientes.IngredienteServicio;
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> sergio
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> sergio
 
 /**
  *
@@ -32,13 +47,20 @@ public class RecetaControlador {
     @GetMapping("/mostrar-receta")
     public String mostrarReceta(Model model) {
 
+<<<<<<< HEAD
         model.addAttribute("lista", recetaServicio.listarReceta());
 
         return "mostrar-receta.html";
+=======
+        model.addAttribute("receta", recetaServicio.listarReceta());
+
+        return "receta-lista.html";
+>>>>>>> sergio
 
     }
 
     @GetMapping("/crear-receta")
+<<<<<<< HEAD
     public String toGuardarReceta(Model model, @RequestParam(required = false) Receta rece) {
 
         if (rece == null) {
@@ -58,11 +80,21 @@ public class RecetaControlador {
         } else {
             model.addAttribute("recetas", rece);
         }
+=======
+    public String toGuardarReceta(Model model) {
+        model.addAttribute("lista", ingredienteServicio.listar());
+        Receta receta = new Receta();
+        receta.getIngredientes().add(new Ingrediente());
+        receta.getIngredientes().add(new Ingrediente());
+        receta.getIngredientes().add(new Ingrediente());
+        model.addAttribute("recetas", receta);
+>>>>>>> sergio
 
         return "crear-receta.html";
     }
 
     @PostMapping("/guardar-receta")
+<<<<<<< HEAD
     public String guardarIngrediente(@ModelAttribute Receta receta, RedirectAttributes redirect,
             @RequestParam(required = true) String cantidad, ModelMap model) throws ErrorServicio {
 
@@ -112,4 +144,22 @@ public class RecetaControlador {
 
         return "pastel-de-papa.html";
     }
+=======
+    public String guardarIngrediente(@ModelAttribute Receta receta) {
+
+        System.out.println(receta.getNombre());
+        List<Ingrediente> list = receta.getIngredientes();
+        for (int i = 0; i < 3; i++) {
+
+            list.get(i).getNombreIngrediente();
+
+        }
+
+        recetaServicio.crearReceta(receta);
+
+        return "redirect:/receta/mostrar-receta";
+
+    }
+
+>>>>>>> sergio
 }

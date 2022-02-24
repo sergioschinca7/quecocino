@@ -4,7 +4,11 @@
  */
 package com.quecomemos.receta;
 
+<<<<<<< HEAD
 import com.quecomemos.Errores.ErrorServicio;
+=======
+import com.quecomemos.Ingredientes.Ingrediente;
+>>>>>>> sergio
 import java.util.List;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +49,7 @@ public class RecetaServicioImpl implements RecetaServicio {
 
     }
 
+<<<<<<< HEAD
     @Override
     public Receta validarReceta(Receta receta) throws ErrorServicio {
         if (receta.getNombre().isEmpty()) {
@@ -93,4 +98,6 @@ public class RecetaServicioImpl implements RecetaServicio {
         return result;
     }
 
+=======
+>>>>>>> sergio
 }
