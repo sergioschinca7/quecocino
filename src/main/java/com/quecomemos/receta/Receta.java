@@ -32,78 +32,73 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "recetas")
 public class Receta implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     private String nombre;
-<<<<<<< HEAD
     @Column(length = 4000)
-=======
-    
->>>>>>> sergio
     private String procedimiento;
-    
+
     private String duracion;
-    
+
     @Enumerated(EnumType.STRING)
     private Complejidad complejidad;
-<<<<<<< HEAD
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
     
-        @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private ValorCalorico valorCalorico;
+        
+    private String anadir;    
     
 
     @ManyToMany
-=======
-    
-    private String caloriasTotales;
-    
-    @ManyToMany(cascade = {CascadeType.ALL})
->>>>>>> sergio
     @JoinTable(name = "receta_ingredientes", joinColumns = {
         @JoinColumn(name = "receta_id")}, inverseJoinColumns = {
         @JoinColumn(name = "ingrediente_id")
     }
     )
     private List<Ingrediente> ingredientes = new ArrayList<>();
-<<<<<<< HEAD
 
-    private ArrayList<String> cantidad = new ArrayList();
+    private ArrayList<String> cantidad = new ArrayList(); 
 
     public Ingrediente getIngrediente(int i) {
         return this.ingredientes.get(i);
     }
 
-=======
-    
->>>>>>> sergio
     public Integer getId() {
         return id;
     }
-    
+
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
-    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getAnadir() {
+        return anadir;
+    }
+
+    public void setAnadir(String anadir) {
+        this.anadir = anadir;
+    }
     
+
     public String getProcedimiento() {
         return procedimiento;
     }
-<<<<<<< HEAD
 
     public ValorCalorico getValorCalorico() {
         return valorCalorico;
@@ -114,29 +109,25 @@ public class Receta implements Serializable {
     }
     
 
-=======
-    
->>>>>>> sergio
     public void setProcedimiento(String procedimiento) {
         this.procedimiento = procedimiento;
     }
-    
+
     public String getDuracion() {
         return duracion;
     }
-    
+
     public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
-    
+
     public Complejidad getComplejidad() {
         return complejidad;
     }
-    
+
     public void setComplejidad(Complejidad complejidad) {
         this.complejidad = complejidad;
     }
-<<<<<<< HEAD
 
     public Categoria getCategoria() {
         return categoria;
@@ -144,25 +135,15 @@ public class Receta implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-=======
-    
-    public String getCaloriasTotales() {
-        return caloriasTotales;
     }
-    
-    public void setCaloriasTotales(String caloriasTotales) {
-        this.caloriasTotales = caloriasTotales;
->>>>>>> sergio
-    }
-    
+
     public List<Ingrediente> getIngredientes() {
         return ingredientes;
     }
-    
+
     public void setIngredientes(List<Ingrediente> ingredientes) {
         this.ingredientes = ingredientes;
     }
-<<<<<<< HEAD
 
     public ArrayList<String> getCantidad() {
         return cantidad;
@@ -178,13 +159,4 @@ public class Receta implements Serializable {
 
     }
 
-=======
-    
-    public void addIngrediente(Ingrediente ingrediente) {
-        
-        ingredientes.add(ingrediente);
-        
-    }
-    
->>>>>>> sergio
 }

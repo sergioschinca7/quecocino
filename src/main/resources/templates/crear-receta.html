@@ -1,27 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
-    <head>
-        <title>Crear Receta</title>
-<<<<<<< HEAD
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-=======
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
->>>>>>> sergio
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-            />
-    </head>
+    <head th:replace="/plantilla/plantilla::head"></head>
     <body>
+        <nav th:replace="/plantilla/plantilla::nav"></nav>
         <div class="container mt-3">
             <form
                 class="row g-3"
-<<<<<<< HEAD
                 th:action="@{/receta/guardar-receta}"
+
                 method="POST"
                 th:object="${recetas}"
                 >
@@ -31,6 +17,56 @@
 
                 <label>Nombre Receta</label>
                 <input type="text" th:field="*{nombre}"/>
+                <div class="container text-capitalize">
+                    <table
+                        class="table table-striped table-hover table-sm table-bordered"
+                        >
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingrediente</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Agregar</th>
+                                <th scope="col">Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr th:id="'ingrediente' + ${index.index}"
+                                th:classappend="${index.index != 0} ? 'no-mostrar'"
+                                th:each="receta, index : *{ingredientes}">
+                                <!--                                <td>
+                                                                    <input type="text" name="cantidad"/>
+                                                                </td>-->
+                                <td>
+                                    <select th:field="*{ingredientes[__${index.index}__].nombreIngrediente}"
+                                            th:id="'nombreIngrediente'+${index.index}">
+                                        <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
+                                                th:value="${l.nombreIngrediente}"></option>
+                                    </select>
+
+                                </td>
+
+                                <td>
+                                    <input type="text"
+                                           th:field="*{cantidad[__${index.index}__]}"
+                                           th:id="'cantidad'+${index.index}">    
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary"
+                                            th:attr="onclick=|agregar('ingrediente',${index.index})|">Agregar
+                                    </button>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-danger"
+                                            th:attr="onclick=|eliminar('ingrediente',${index.index})|">Eliminar
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <label>Procedimiento</label>
                 <textarea rows = "5" cols = "50" th:field="*{procedimiento}">
             procedimiento
@@ -43,8 +79,8 @@
                     <option th:each="complejidad : ${T(com.quecomemos.enumeraciones.Complejidad).values()}" 
                             th:value="${complejidad}" th:text="${complejidad.displayName}"></option>
                 </select>
-                
-                 <label>Categoría</label>
+
+                <label>Categoría</label>
                 <select name="categoria" th:field="*{categoria}">
                     <option th:each="categoria : ${T(com.quecomemos.enumeraciones.Categoria).values()}" 
                             th:value="${categoria}" th:text="${categoria.displayName}"></option>
@@ -52,43 +88,19 @@
 
                 <label>Valor Calórico</label>
                 <select name="valorCalorico" th:field="*{valorCalorico}">
-                    <option th:each="vc : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
-                            th:value="${valorCalorico}" th:text="${vc.nombre}"></option>
+                    <option th:each="valorCalorico : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
+                            th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
                 </select>
 
 
-                <div class="container text-capitalize">
-                    <table
-                        class="table table-striped table-hover table-sm table-bordered"
-                        >
-                        <thead>
-                            <tr>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Nombre del ingrediente</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr th:each="receta, index : *{ingredientes}">
-                                <td>
-                                    <input type="text" name="cantidad"/>
-                                </td>
-                                <td>
-                                    <select th:field="*{ingredientes[__${index.index}__].nombreIngrediente}">
-                                        <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
-                                                th:value="${l.nombreIngrediente}"></option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <button>Añadir</button>
 
 
+                <!--                <a th:href="@{/receta/crear-receta}+'?rece='+${recetas}">Añadir</a>
+                                <button>Añadir</button>-->
 
-                <input type="submit" value="guardar" confirm="guardar"/>
+                <input type="submit" name="action" value="anadir" confirm="anadir"/>
+
+                <input type="submit" name="action" value="Guardar" confirm="guardar"/>
                 <p th:if="${error} != null" th:text="${error}"></p>
 
             </form>
@@ -96,103 +108,5 @@
 
         <div class="container text-capitalize">
         </div>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-            crossorigin="anonymous"
-        ></script>
     </body>
 </html>
-=======
-                th:action="@{/guardar-receta}"
-                method="POST"
-                th:object="${receta}"
-                >
-                <input th:field="*{id}" type="hidden" />
-                <label>Nombre Receta</label>
-                <input type="text" th:field="*{nombre}" />
-                <label>Procedimiento</label>
-                <input type="text" th:field="*{procedimiento}" />
-                <label>Duración</label>
-                <input type="text" th:field="*{duracion}" />
-                <label>Complejidad</label>
-
-                <select name="complejidad" th:field="*{complejidad}">
-                    <option th:each="complejidad : ${T(com.quecomemos.enumeraciones.Complejidad).values()}" 
-                            th:value="${complejidad}" th:text="${complejidad.displayName}"></option>
-                </select>
-
-                <label>Valor Calórico</label>
-                <select name="valorCalorico" th:field="*{caloriasTotales}">
-                    <option th:each="vc : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
-                            th:value="${caloriasTotales}" th:text="${vc.nombre}"></option>
-                </select>
-
-                <div class="container text-capitalize">
-                    <table
-                        class="table table-striped table-hover table-sm table-bordered"
-                        >
-                        <thead>
-                            <tr>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Nombre del ingrediente</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            <tr th:each="receta,index : *{ingredientes}">
-                                <td>
-                                    <input type="text"/>
-                                </td>
-                                <td>
-                                    <select th:field="*{ingredientes[__${index.index}__].nombreIngrediente}">
-                                        <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
-                                                th:value="${ l.nombreIngrediente}"></option>
-                                    </select>
-                                </td>
-                            </tr>
-                        <a >
-
-                            </tbody>
-                    </table>
-                </div>
-
-
-
-
-            </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-
-
-
-
-        <button>Añadir</button>
-
-        <input type="submit" value="guardar" confirm="guardar" />
-    </form>
-</div>
-
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"
-></script>
-</body>
-</html>
->>>>>>> sergio

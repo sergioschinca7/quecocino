@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RecetaRepositorio extends JpaRepository<Receta, Integer>{
     
-     @Query("SELECT r FROM Receta r WHERE r.nombre = :nombre")
+     @Query("SELECT r FROM Receta r WHERE r.nombre = :nombre ORDER BY r.nombre")
     public Receta buscarRecetaPorNombre(@Param("nombre") String nombre);
     
     
