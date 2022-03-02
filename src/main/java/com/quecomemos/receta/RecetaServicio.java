@@ -19,7 +19,6 @@ public interface RecetaServicio {
     public void eliminarReceta(Integer id);
 
     public void crearReceta(Receta receta);
-<<<<<<< HEAD
 
     public Receta encontrarRecetaPorId(Integer id);
 
@@ -29,8 +28,4 @@ public interface RecetaServicio {
     
     public String[] separarCantidades(String cantidad);
 
-=======
-    
-    public Receta encontrarRecetaPorId(Integer id);    
->>>>>>> sergio
 }
