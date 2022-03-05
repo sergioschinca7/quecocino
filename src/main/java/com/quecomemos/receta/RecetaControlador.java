@@ -48,7 +48,7 @@ public class RecetaControlador {
     }
 
     @PostMapping("/guardar-receta")
-    public String guardarIngrediente(@ModelAttribute Receta receta, RedirectAttributes redirect,
+    public String guardarReceta(@ModelAttribute Receta receta, RedirectAttributes redirect,
             ModelMap model) throws ErrorServicio {
 
         ArrayList<Ingrediente> seleccionados = new ArrayList();

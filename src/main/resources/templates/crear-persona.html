@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head th:replace="/plantilla/plantilla::head"></head>
+    <body>
+        <nav th:replace="/plantilla/plantilla::nav"></nav>
+
+        <div class="container">
+            <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                <span th:text="${error}" ></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <div class="card mt-5">
+                <div class="card-header d-flex">
+                    <h1>Crear Persona</h1>
+                </div>
+                <div class="card-body">
+
+                    <form th:action="@{/persona/guardar-persona}" method="POST" th:object="${persona}" class="col-6 mx-auto">
+                        <input hidden th:field="*{id}">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" th:field="*{nombre}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" th:field="*{apellido}">
+                        </div>
+                                              
+                        <div class="mb-3">
+                            <label for="Contraseña" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" th:field="*{contrasena}" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="Repetir la contraseña" class="form-label">Repetir la contraseña</label>
+                            <input type="password" class="form-control" name="contrasena2" >
+                        </div>
+
+                        <button type="submit" name="action" value="Guardar" confirm="guardar" class="btn-dark px-5 py-2 ms-auto">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
