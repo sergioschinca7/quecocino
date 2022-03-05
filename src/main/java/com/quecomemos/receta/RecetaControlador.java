@@ -4,7 +4,10 @@ import com.quecomemos.Errores.ErrorServicio;
 import com.quecomemos.Ingredientes.Ingrediente;
 import com.quecomemos.Ingredientes.IngredienteServicio;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -132,7 +135,18 @@ public class RecetaControlador {
             @RequestParam(required = false) String ingrediente3) {
 
         System.out.println(ingrediente1 + " " + ingrediente2 + " " + ingrediente3 + " " + "estos son los ingredientes");
-
+        List<String> ingredientes = Arrays.asList(ingrediente1, ingrediente2, ingrediente3);
+        
+        List<Receta> lista = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
+        
+        HashSet<Receta> lista1 = new HashSet(lista);
+        
+        for (Receta receta : lista1) {
+            
+            System.out.println("recetas " + receta.getNombre());
+            
+            
+        }
         return "buscar-receta.html";
 
     }

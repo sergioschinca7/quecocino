@@ -110,6 +110,13 @@ public class RecetaServicioImpl implements RecetaServicio {
 
 
     }
+
+    @Override
+    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1) {
+        
+        return recetaRepositorio.findAllByIngredientesNombreIngredienteIn(ingrediente1);
+
+    }
     
 
 }

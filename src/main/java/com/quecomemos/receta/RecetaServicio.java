@@ -29,5 +29,6 @@ public interface RecetaServicio {
     
     public Receta buscarNombre(String nombreReceta) throws ErrorServicio;
     
+    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1);
 
 }
