@@ -5,6 +5,7 @@
 package com.quecomemos.receta;
 
 import com.quecomemos.Ingredientes.Ingrediente;
+import java.util.ArrayList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,7 +22,10 @@ public interface RecetaRepositorio extends JpaRepository<Receta, Integer>{
     public Receta buscarRecetaPorNombre(@Param("nombre") String nombre);
     
     
-
+//    @Query("SELECT r FROM Receta r JOIN r.ingredientes ri ON"
+//            + " ri.=r.id JOIN ingredientes i ON i.ingrediente_id=ri.ingrediente_id"
+//            + "AND i.nombre_ingrediente IN (':ingrediente1') GROUP BY r.nombre")
+//    public ArrayList<Receta> recetasPorIngredientes(@Param("ingrediente1") String ingrediente1);
     
     
     

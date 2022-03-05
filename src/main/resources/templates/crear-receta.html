@@ -34,12 +34,11 @@
                             <tr th:id="'ingrediente' + ${index.index}"
                                 th:classappend="${index.index != 0} ? 'no-mostrar'"
                                 th:each="receta, index : *{ingredientes}">
-                                <!--                                <td>
-                                                                    <input type="text" name="cantidad"/>
-                                                                </td>-->
+
                                 <td>
                                     <select th:field="*{ingredientes[__${index.index}__].nombreIngrediente}"
                                             th:id="'nombreIngrediente'+${index.index}">
+                                        <option value=""> </option>                                                                         
                                         <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
                                                 th:value="${l.nombreIngrediente}"></option>
                                     </select>
@@ -68,9 +67,7 @@
                 </div>
 
                 <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">
-            procedimiento
-                </textarea>
+                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
                 <label>Duración</label>
                 <input type="text" th:field="*{duracion}"/>
 
@@ -91,14 +88,6 @@
                     <option th:each="valorCalorico : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
                             th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
                 </select>
-
-
-
-
-                <!--                <a th:href="@{/receta/crear-receta}+'?rece='+${recetas}">Añadir</a>
-                                <button>Añadir</button>-->
-
-                <input type="submit" name="action" value="anadir" confirm="anadir"/>
 
                 <input type="submit" name="action" value="Guardar" confirm="guardar"/>
                 <p th:if="${error} != null" th:text="${error}"></p>

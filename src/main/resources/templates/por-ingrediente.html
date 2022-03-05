@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head th:replace="/plantilla/plantilla::head"></head>
+    <body>
+        <nav th:replace="/plantilla/plantilla::nav"></nav>
+
+        <p align=CENTER><strong> DECIME QUE COMER </strong></p>
+
+        <div class="container mt-3">
+            <form
+                class="row g-3"
+                th:action="@{/receta/decime-que-comer}" method="GET">
+                <p th:if="${error} != null" th:text="${error}"></p>
+                <div class="container text-capitalize">
+                    <table class="table table-striped table-hover table-sm table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Ingrediente 1 </th>
+                                <th scope="col">Ingrediente 2</th>
+                                <th scope="col">Ingrediente 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>
+                                    <select th:name="ingrediente1">
+                                        <option value="" disabled selected hidden>Seleccione un ingrediente</option>                                                                         
+                                        <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
+                                                th:value="${l.nombreIngrediente}"></option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <select th:name="ingrediente2">
+                                        <option value="" disabled selected hidden>Seleccione un ingrediente</option>                                        <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
+                                                th:value="${l.nombreIngrediente}" th:name="ingrediente2"></option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select th:name="ingrediente3">
+                                        <option value="" disabled selected hidden>Seleccione un ingrediente</option>                                        <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
+                                                th:value="${l.nombreIngrediente}" th:name="ingrediente2"></option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <input type="submit" name="action" value="Buscar" confirm="guardar"/>
+                <p th:if="${error} != null" th:text="${error}"></p>
+            </form>
+        </div>
+    </body>
+</html>

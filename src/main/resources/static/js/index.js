@@ -7,6 +7,7 @@ function agregar(string, index) {
     if (row != null) {
         row.classList.remove("no-mostrar");
     }
+    
     console.log("holis entre a agregar");
 }
 
@@ -16,7 +17,7 @@ function eliminar(string, index) {
         if (index != 0) {
             let nombre = document.getElementById('nombreIngrediente' + index);
             let cantidad = document.getElementById('cantidad' + index);
-            nombre.value = null;
+            nombre.value = '';
             cantidad.value = '';
         }
     }

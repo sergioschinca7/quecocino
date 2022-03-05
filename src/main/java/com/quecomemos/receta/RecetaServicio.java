@@ -5,7 +5,6 @@
 package com.quecomemos.receta;
 
 import com.quecomemos.Errores.ErrorServicio;
-import com.quecomemos.Ingredientes.Ingrediente;
 import java.util.List;
 
 /**
@@ -27,5 +26,8 @@ public interface RecetaServicio {
     public Receta buscarRecetaPorNombre(String nombre) throws ErrorServicio;
     
     public String[] separarCantidades(String cantidad);
+    
+    public Receta buscarNombre(String nombreReceta) throws ErrorServicio;
+    
 
 }

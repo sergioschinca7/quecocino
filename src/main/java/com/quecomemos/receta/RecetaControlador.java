@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.quecomemos.receta;
 
 import com.quecomemos.Errores.ErrorServicio;
 import com.quecomemos.Ingredientes.Ingrediente;
 import com.quecomemos.Ingredientes.IngredienteServicio;
 import java.util.ArrayList;
+import java.util.Iterator;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +13,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- *
- * @author Sergio
- */
 @Controller
 @RequestMapping("/receta")
 public class RecetaControlador {
@@ -43,29 +37,29 @@ public class RecetaControlador {
 
         model.addAttribute("lista", ingredienteServicio.listar());
         Receta receta = new Receta();
-        
-        for (int i = 0; i < 3; i++) {
-            receta.getIngredientes().add(new Ingrediente());
-        }
-        
 
-//        Ingrediente ingrediente = new Ingrediente();
-//        Ingrediente ingrediente1 = new Ingrediente();
-//        Ingrediente ingrediente2 = new Ingrediente();
-//
-//        receta.getIngredientes().add(ingrediente);
-//        receta.getIngredientes().add(ingrediente1);
-//        receta.getIngredientes().add(ingrediente2);
+        for (int i = 0; i < 50; i++) {
+            Ingrediente ing = null;
+            receta.getIngredientes().add(ing);
+        }
 
         model.addAttribute("recetas", receta);
         return "crear-receta.html";
     }
+
     @PostMapping("/guardar-receta")
     public String guardarIngrediente(@ModelAttribute Receta receta, RedirectAttributes redirect,
-            /*@RequestParam(required = true) String cantidad,*/ ModelMap model) throws ErrorServicio {
+            ModelMap model) throws ErrorServicio {
 
         ArrayList<Ingrediente> seleccionados = new ArrayList();
-        ArrayList<String> cant = new ArrayList();
+        Iterator<Ingrediente> it = receta.getIngredientes().iterator();
+
+        while (it.hasNext()) {
+            Ingrediente next = it.next();
+            if (next.getNombreIngrediente() == null || next.getNombreIngrediente().isEmpty()) {
+                it.remove();
+            }
+        }
 
         try {
             Receta aPersistir = recetaServicio.validarReceta(receta);
@@ -82,7 +76,6 @@ public class RecetaControlador {
 
             receta.setIngredientes(seleccionados);
 
-            System.out.println("botonm anadir " + aPersistir.getAnadir());
             recetaServicio.crearReceta(aPersistir);
 
         } catch (ErrorServicio e) {
@@ -100,29 +93,48 @@ public class RecetaControlador {
         Receta rece = recetaServicio.encontrarRecetaPorId(id);
         model.addAttribute("receta", rece);
 
-        for (String object : rece.getCantidad()) {
-            System.out.println("cantidades " + object);
-            System.out.println("tamaño " + rece.getCantidad().size());
-        }
-
         return "receta-detalle.html";
     }
 
     @GetMapping("/buscar-receta")
-    public String buscarReceta(ModelMap model, String nombre) {
+    public String buscarReceta() {
+
+        return "buscar-receta.html";
+    }
+
+    @GetMapping("/receta-por-nombre")
+    public String recetaPorNombre(ModelMap model, String nombreReceta) {
 
         try {
-            Receta receta = recetaServicio.buscarRecetaPorNombre(nombre);
+            Receta receta = recetaServicio.buscarNombre(nombreReceta);
             model.addAttribute("receta", receta);
-            
-            return "mostrar-receta-por-nombre.html";
+
+            return "receta-por-nombre.html";
 
         } catch (ErrorServicio e) {
-            new ErrorServicio("No hay recetas con ese nombre");
             model.put("error", e.getMessage());
             return "buscar-receta.html";
         }
-        
+    }
+
+    @GetMapping("/por-ingrediente")
+    public String decimeQueComer(Model model) {
+
+        model.addAttribute("lista", ingredienteServicio.listar());
+
+        return "por-ingrediente.html";
+    }
+
+    @GetMapping("/decime-que-comer")
+    public String recetaPorIngrediente(ModelMap model,
+            @RequestParam(required = false) String ingrediente1,
+            @RequestParam(required = false) String ingrediente2,
+            @RequestParam(required = false) String ingrediente3) {
+
+        System.out.println(ingrediente1 + " " + ingrediente2 + " " + ingrediente3 + " " + "estos son los ingredientes");
+
+        return "buscar-receta.html";
+
     }
 
 }

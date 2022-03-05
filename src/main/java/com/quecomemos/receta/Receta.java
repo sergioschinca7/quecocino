@@ -50,12 +50,9 @@ public class Receta implements Serializable {
 
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
-    
+
     @Enumerated(EnumType.STRING)
     private ValorCalorico valorCalorico;
-        
-    private String anadir;    
-    
 
     @ManyToMany
     @JoinTable(name = "receta_ingredientes", joinColumns = {
@@ -65,7 +62,8 @@ public class Receta implements Serializable {
     )
     private List<Ingrediente> ingredientes = new ArrayList<>();
 
-    private ArrayList<String> cantidad = new ArrayList(); 
+    @Column(name = "cantidad", columnDefinition = "LONGBLOB")
+    private ArrayList<String> cantidad = new ArrayList();
 
     public Ingrediente getIngrediente(int i) {
         return this.ingredientes.get(i);
@@ -87,15 +85,6 @@ public class Receta implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getAnadir() {
-        return anadir;
-    }
-
-    public void setAnadir(String anadir) {
-        this.anadir = anadir;
-    }
-    
-
     public String getProcedimiento() {
         return procedimiento;
     }
@@ -107,7 +96,6 @@ public class Receta implements Serializable {
     public void setValorCalorico(ValorCalorico valorCalorico) {
         this.valorCalorico = valorCalorico;
     }
-    
 
     public void setProcedimiento(String procedimiento) {
         this.procedimiento = procedimiento;
