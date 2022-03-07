@@ -7,7 +7,6 @@ package com.quecomemos.Ingredientes;
 import com.quecomemos.receta.Receta;
 import java.io.Serializable;
 import java.util.List;
-import java.util.TreeSet;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,14 +33,7 @@ public class Ingrediente implements Serializable {
 
     @Column(name = "nombre_ingrediente")
     private String nombreIngrediente;
-//    @Column(name = "calorias")
-//    private String cantidadCalorias;
-    
-    
-    
-    
-    
-    
+
     @ManyToMany(mappedBy = "ingredientes", cascade = {CascadeType.ALL})
     private List<Receta> receta;
 
@@ -61,14 +53,6 @@ public class Ingrediente implements Serializable {
         this.nombreIngrediente = nombreIngrediente;
     }
 
-//    public String getCantidadCalorias() {
-//        return cantidadCalorias;
-//    }
-//
-//    public void setCantidadCalorias(String cantidadCalorias) {
-//        this.cantidadCalorias = cantidadCalorias;
-//    }
-
     public List<Receta> getReceta() {
         return receta;
     }
@@ -81,7 +65,5 @@ public class Ingrediente implements Serializable {
     public String toString() {
         return nombreIngrediente;
     }
-    
-    
-    
+
 }

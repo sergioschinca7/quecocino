@@ -22,4 +22,6 @@ public interface IngredienteRepositorio extends JpaRepository<Ingrediente, Integ
     public Ingrediente buscarIngredientePorNombre(@Param("nombre") String nombre);
     
     
+    
+    
 }

@@ -47,6 +47,7 @@ public class RecetaServicioImpl implements RecetaServicio {
 
     @Override
     public Receta validarReceta(Receta receta) throws ErrorServicio {
+               
         if (receta.getNombre().isEmpty()) {
             throw new ErrorServicio("El nombre no puede estar vacio.");
         }
@@ -92,5 +93,30 @@ public class RecetaServicioImpl implements RecetaServicio {
         
         return result;
     }
+
+    @Override
+    public Receta buscarNombre(String nombreReceta) throws ErrorServicio {
+        
+        String nombre = nombreReceta.toUpperCase();
+        
+        Receta receta = recetaRepositorio.buscarRecetaPorNombre(nombre);
+        
+        if (receta==null) {
+            throw new ErrorServicio("La receta no existe");
+        }
+        
+        return receta;
+        
+
+
+    }
+
+    @Override
+    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1) {
+        
+        return recetaRepositorio.findAllByIngredientesNombreIngredienteIn(ingrediente1);
+
+    }
+    
 
 }
