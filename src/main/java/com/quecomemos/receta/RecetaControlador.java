@@ -77,7 +77,9 @@ public class RecetaControlador {
                 seleccionados.add(ingrediente);
             }
 
-            receta.setIngredientes(seleccionados);
+            HashSet<Ingrediente> sel = new HashSet(seleccionados);
+            ArrayList<Ingrediente> select = new ArrayList(sel);
+            receta.setIngredientes(select);
 
             recetaServicio.crearReceta(aPersistir);
 
@@ -105,10 +107,48 @@ public class RecetaControlador {
         return "buscar-receta.html";
     }
 
+    @GetMapping("/receta-navbar")
+    public String recetaNavbar(ModelMap model, String nombreReceta) {
+        Boolean noHayReceta = true;
+        try {
+
+            Receta receta = recetaServicio.buscarNombre(nombreReceta);
+            System.out.println(" ESTAMS ENE L TRY");
+            
+            List<Receta> listaReceta = Arrays.asList(receta);
+            model.addAttribute("receta", listaReceta);
+            return "receta-navbar.html";
+
+        } catch (ErrorServicio e) {
+            model.put("error", e.getMessage());
+
+            noHayReceta = false;
+            if (noHayReceta == false) {
+                List<String> ingredientes = Arrays.asList(nombreReceta);
+
+                List<Receta> buscarRecetas = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
+
+                HashSet<Receta> recetas = new HashSet(buscarRecetas);
+                              
+                
+                for (Receta object : recetas) {
+                    System.out.println("objetos " + object);
+
+                }
+
+                model.addAttribute("receta", recetas);
+            }
+            System.out.println("estring " + nombreReceta);
+
+            return "receta-navbar.html";
+        }
+    }
+
     @GetMapping("/receta-por-nombre")
     public String recetaPorNombre(ModelMap model, String nombreReceta) {
 
         try {
+
             Receta receta = recetaServicio.buscarNombre(nombreReceta);
             model.addAttribute("receta", receta);
 
@@ -136,18 +176,19 @@ public class RecetaControlador {
 
         System.out.println(ingrediente1 + " " + ingrediente2 + " " + ingrediente3 + " " + "estos son los ingredientes");
         List<String> ingredientes = Arrays.asList(ingrediente1, ingrediente2, ingrediente3);
-        
-        List<Receta> lista = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
-        
-        HashSet<Receta> lista1 = new HashSet(lista);
-        
-        for (Receta receta : lista1) {
-            
+
+        List<Receta> buscarRecetas = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
+
+        HashSet<Receta> recetas = new HashSet(buscarRecetas);
+
+        for (Receta receta : recetas) {
+
             System.out.println("recetas " + receta.getNombre());
-            
-            
         }
-        return "buscar-receta.html";
+
+        model.addAttribute("recetas", recetas);
+
+        return "opciones-recetas.html";
 
     }
 
