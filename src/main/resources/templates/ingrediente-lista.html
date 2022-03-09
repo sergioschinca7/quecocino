@@ -26,14 +26,10 @@
                 </thead>
                 <tbody>
                     <tr th:each="ingrediente, index:${lista}">
-                <p th:text="${index.index}"></p>
-                <td th:if="${index.index}< ${#lists.size(lista)/2}" th:text="${ingrediente.nombreIngrediente}" ></td>
-                <td th:if="${index.index}> ${#lists.size(lista)/2}" th:text="${ingrediente.nombreIngrediente}"></td>
+                <td th:text="${ingrediente.nombreIngrediente}" ></td>
                 </tr>
                 </tbody>
             </table>
-
-            <p th:text="${#lists.size(lista)/2}"></p>
 
             <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
 

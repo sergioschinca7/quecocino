@@ -133,10 +133,12 @@ public class RecetaControlador {
     @GetMapping("/receta-navbar")
     public String recetaNavbar(ModelMap model, String nombreReceta) {
         Boolean noHayReceta = true;
+        String nombreReceta1=null;
+        String err = "No existen recetas con ese nombre.";
         try {
-
-            Receta receta = recetaServicio.buscarNombre(nombreReceta);
-            System.out.println(" ESTAMS ENE L TRY");
+            
+            nombreReceta1 = nombreReceta.toUpperCase();
+            Receta receta = recetaServicio.buscarNombre(nombreReceta1);
 
             List<Receta> listaReceta = Arrays.asList(receta);
             model.addAttribute("receta", listaReceta);
@@ -147,20 +149,14 @@ public class RecetaControlador {
 
             noHayReceta = false;
             if (noHayReceta == false) {
-                List<String> ingredientes = Arrays.asList(nombreReceta);
+                List<String> ingredientes = Arrays.asList(nombreReceta1);
 
                 List<Receta> buscarRecetas = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
-
+                
                 HashSet<Receta> recetas = new HashSet(buscarRecetas);
-
-                for (Receta object : recetas) {
-                    System.out.println("objetos " + object);
-
-                }
 
                 model.addAttribute("receta", recetas);
             }
-            System.out.println("estring " + nombreReceta);
 
             return "receta-navbar.html";
         }
