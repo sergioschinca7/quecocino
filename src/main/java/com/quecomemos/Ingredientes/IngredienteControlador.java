@@ -26,7 +26,7 @@ public class IngredienteControlador {
 
     @GetMapping("/lista")
     public String crearIngrediente(Model model) {
-        model.addAttribute("lista", ingredienteServicio.listar());
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
 
         return "ingrediente-lista.html";
 

@@ -6,7 +6,6 @@ package com.quecomemos.Ingredientes;
 
 import com.quecomemos.Errores.ErrorServicio;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +23,12 @@ public class IngredienteServicioImpl implements IngredienteServicio {
     public List<Ingrediente> listar() {
 
         return ingredienteRepositorio.findAll();
+    }
+
+    @Override
+    public List<Ingrediente> listarAlfabeticamente() {
+        
+        return ingredienteRepositorio.findByOrderByNombreIngrediente();
     }
 
     @Override
@@ -51,7 +56,7 @@ public class IngredienteServicioImpl implements IngredienteServicio {
 
     @Override
     public Ingrediente validarIngrediente(Ingrediente ingrediente) throws ErrorServicio {
-        
+
         if (ingrediente.getNombreIngrediente().isEmpty()) {
             throw new ErrorServicio("El nombre del ingrediente no puede estar vacio.");
         }
@@ -59,7 +64,7 @@ public class IngredienteServicioImpl implements IngredienteServicio {
         Ingrediente baseDeDatos = encontrarPorNombre(nombre);
 
         if (baseDeDatos == null) {
-            
+
             ingrediente.setNombreIngrediente(nombre);
 
         } else if (baseDeDatos.getNombreIngrediente().equalsIgnoreCase(ingrediente.getNombreIngrediente())) {
@@ -68,4 +73,5 @@ public class IngredienteServicioImpl implements IngredienteServicio {
         return ingrediente;
 
     }
+
 }

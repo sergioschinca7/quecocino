@@ -38,7 +38,7 @@ public class RecetaControlador {
     @GetMapping("/crear-receta")
     public String toGuardarReceta(Model model) {
 
-        model.addAttribute("lista", ingredienteServicio.listar());
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
         Receta receta = new Receta();
 
         for (int i = 0; i < 50; i++) {
@@ -49,6 +49,29 @@ public class RecetaControlador {
         model.addAttribute("recetas", receta);
         return "crear-receta.html";
     }
+    
+    @GetMapping("/editar-receta")
+    public String editarReceta(Model model, Integer id){
+        Receta receta = recetaServicio.buscarPorId(id);
+        Receta editada = new Receta();
+        editada.setId(id);
+        editada.setNombre(receta.getNombre());
+        editada.setProcedimiento(receta.getProcedimiento());
+        
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
+        
+        for (int i = 0; i < 50; i++) {
+            Ingrediente ing = null;
+            editada.getIngredientes().add(ing);
+        }
+        
+        model.addAttribute("recetas", editada);
+        
+        return "modificar-receta.html";
+    }
+            
+    
+    
 
     @PostMapping("/guardar-receta")
     public String guardarReceta(@ModelAttribute Receta receta, RedirectAttributes redirect,
@@ -114,7 +137,7 @@ public class RecetaControlador {
 
             Receta receta = recetaServicio.buscarNombre(nombreReceta);
             System.out.println(" ESTAMS ENE L TRY");
-            
+
             List<Receta> listaReceta = Arrays.asList(receta);
             model.addAttribute("receta", listaReceta);
             return "receta-navbar.html";
@@ -129,8 +152,7 @@ public class RecetaControlador {
                 List<Receta> buscarRecetas = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
 
                 HashSet<Receta> recetas = new HashSet(buscarRecetas);
-                              
-                
+
                 for (Receta object : recetas) {
                     System.out.println("objetos " + object);
 
@@ -163,7 +185,8 @@ public class RecetaControlador {
     @GetMapping("/por-ingrediente")
     public String decimeQueComer(Model model) {
 
-        model.addAttribute("lista", ingredienteServicio.listar());
+        //model.addAttribute("lista", ingredienteServicio.listar());
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
 
         return "por-ingrediente.html";
     }

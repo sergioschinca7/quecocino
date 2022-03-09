@@ -18,6 +18,8 @@ public interface RecetaServicio {
     public void eliminarReceta(Integer id);
 
     public void crearReceta(Receta receta);
+    
+    public Receta buscarPorId(Integer id);
 
     public Receta encontrarRecetaPorId(Integer id);
 

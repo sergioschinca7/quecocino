@@ -6,6 +6,7 @@ package com.quecomemos.receta;
 
 import com.quecomemos.Errores.ErrorServicio;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class RecetaServicioImpl implements RecetaServicio {
         return recetaRepositorio.findAll();
 
     }
+    
+    
 
     @Override
     public void eliminarReceta(Integer id) {
@@ -115,6 +118,18 @@ public class RecetaServicioImpl implements RecetaServicio {
     public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1) {
         
         return recetaRepositorio.findAllByIngredientesNombreIngredienteIn(ingrediente1);
+
+    }
+
+    @Override
+    public Receta buscarPorId(Integer id) {
+        
+        Optional<Receta> respuesta =  recetaRepositorio.findById(id);
+        
+        Receta receta = respuesta.get();
+        
+        return receta;
+
 
     }
     

@@ -16,7 +16,7 @@
 
 
                 <label>Nombre Receta</label>
-                <input type="text" th:field="*{nombre}"/>
+                <input type="text" th:field="*{nombre}" th:text="*{nombre}"/>
                 <div class="container text-capitalize">
                     <table
                         class="table table-striped table-hover table-sm table-bordered"
@@ -66,15 +66,10 @@
                     </table>
                 </div>
 
-                <div class="container text-capitalize">
-
-                    <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
-
-                </div>
                 <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
+                <textarea rows = "5" cols = "50" th:field="*{procedimiento}" th:text="*{procedimiento}">procedimiento</textarea>
                 <label>Duración</label>
-                <input type="text" th:field="*{duracion}"/>
+                <input type="text" th:field="*{duracion}" th:text="*{duracion}"/>
 
                 <label>Complejidad</label>
                 <select name="complejidad" th:field="*{complejidad}">
@@ -104,3 +99,4 @@
         </div>
     </body>
 </html>
+
