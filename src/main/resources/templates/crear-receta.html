@@ -11,7 +11,10 @@
                 method="POST"
                 th:object="${recetas}"
                 >
-                <p th:if="${error} != null" th:text="${error}"></p>
+                <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                    <span th:text="${error}" ></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 <input th:field="*{id}" type="hidden"/>
 
 

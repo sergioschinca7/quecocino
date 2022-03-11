@@ -54,7 +54,7 @@ public class RecetaControlador {
     public String editarReceta(Model model, Integer id) {
         Receta receta = recetaServicio.buscarPorId(id);
         Receta editada = new Receta();
-        editada.setId(id);
+        //editada.setId(id);
         editada.setNombre(receta.getNombre());
         editada.setProcedimiento(receta.getProcedimiento());
 
@@ -66,13 +66,9 @@ public class RecetaControlador {
         }
 
         model.addAttribute("recetas", editada);
-
+        recetaServicio.eliminarReceta(id);
         return "modificar-receta.html";
     }
-    
-    @PostMapping("/receta-modificada")
-    public 
-    
 
     @PostMapping("/guardar-receta")
     public String guardarReceta(@ModelAttribute Receta receta, RedirectAttributes redirect,
