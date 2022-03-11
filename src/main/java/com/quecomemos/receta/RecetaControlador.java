@@ -49,28 +49,29 @@ public class RecetaControlador {
         model.addAttribute("recetas", receta);
         return "crear-receta.html";
     }
-    
+
     @GetMapping("/editar-receta")
-    public String editarReceta(Model model, Integer id){
+    public String editarReceta(Model model, Integer id) {
         Receta receta = recetaServicio.buscarPorId(id);
         Receta editada = new Receta();
         editada.setId(id);
         editada.setNombre(receta.getNombre());
         editada.setProcedimiento(receta.getProcedimiento());
-        
+
         model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
-        
+
         for (int i = 0; i < 50; i++) {
             Ingrediente ing = null;
             editada.getIngredientes().add(ing);
         }
-        
+
         model.addAttribute("recetas", editada);
-        
+
         return "modificar-receta.html";
     }
-            
     
+    @PostMapping("/receta-modificada")
+    public 
     
 
     @PostMapping("/guardar-receta")
@@ -131,33 +132,15 @@ public class RecetaControlador {
     }
 
     @GetMapping("/receta-navbar")
-    public String recetaNavbar(ModelMap model, String nombreReceta) {
-        Boolean noHayReceta = true;
-        String nombreReceta1=null;
-        String err = "No existen recetas con ese nombre.";
-        try {
-            
-            nombreReceta1 = nombreReceta.toUpperCase();
-            Receta receta = recetaServicio.buscarNombre(nombreReceta1);
+    public String recetaNavbar(ModelMap model, String nombreReceta) throws ErrorServicio {
 
-            List<Receta> listaReceta = Arrays.asList(receta);
-            model.addAttribute("receta", listaReceta);
+        try {
+            List<Receta> receta = recetaServicio.buscar(nombreReceta);
+            model.addAttribute("recetas", receta);
             return "receta-navbar.html";
 
         } catch (ErrorServicio e) {
             model.put("error", e.getMessage());
-
-            noHayReceta = false;
-            if (noHayReceta == false) {
-                List<String> ingredientes = Arrays.asList(nombreReceta1);
-
-                List<Receta> buscarRecetas = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
-                
-                HashSet<Receta> recetas = new HashSet(buscarRecetas);
-
-                model.addAttribute("receta", recetas);
-            }
-
             return "receta-navbar.html";
         }
     }
@@ -191,23 +174,20 @@ public class RecetaControlador {
     public String recetaPorIngrediente(ModelMap model,
             @RequestParam(required = false) String ingrediente1,
             @RequestParam(required = false) String ingrediente2,
-            @RequestParam(required = false) String ingrediente3) {
+            @RequestParam(required = false) String ingrediente3) throws ErrorServicio {
+        try {
+            List<String> ingredientes = Arrays.asList(ingrediente1, ingrediente2, ingrediente3);
+            List<Receta> buscarRecetas = recetaServicio.busquedaPorIng(ingredientes);
+            HashSet<Receta> receta = new HashSet(buscarRecetas);
+            model.addAttribute("recetas", receta);
 
-        System.out.println(ingrediente1 + " " + ingrediente2 + " " + ingrediente3 + " " + "estos son los ingredientes");
-        List<String> ingredientes = Arrays.asList(ingrediente1, ingrediente2, ingrediente3);
+            return "opciones-recetas.html";
 
-        List<Receta> buscarRecetas = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
+        } catch (ErrorServicio e) {
+            model.put("error", e.getMessage());
+            return "opciones-recetas.html";
 
-        HashSet<Receta> recetas = new HashSet(buscarRecetas);
-
-        for (Receta receta : recetas) {
-
-            System.out.println("recetas " + receta.getNombre());
         }
-
-        model.addAttribute("recetas", recetas);
-
-        return "opciones-recetas.html";
 
     }
 

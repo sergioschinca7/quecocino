@@ -1,11 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.quecomemos.usuario;
 
 import com.quecomemos.Errores.ErrorServicio;
-import com.quecomemos.login.Role;
+import com.quecomemos.roles.Role;
+import com.quecomemos.roles.RolesRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +15,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author Sergio
- */
 @Service
 public class PersonaServicioImpl implements PersonaServicio, UserDetailsService {
+
+    @Autowired
+    private RolesRepositorio rolesRepositorio;
 
     @Autowired
     private PersonaRepositorio personaRepositorio;
@@ -37,24 +33,25 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
         if (persona.getApellido().isEmpty() || persona.getApellido() == null) {
             throw new ErrorServicio(" El apellido no puede estar vacío");
         }
+        if (persona.getNombre().equalsIgnoreCase(persona.getApellido())) {
+            throw new ErrorServicio("Nombre y Apellido no pueden ser iguales");
+        }
 
         if (contrasena2 == null) {
 
             throw new ErrorServicio(" La contraseña no puede ser nula");
 
         }
-        if (persona.getContrasena() == null) {
+        if (persona.getContrasena().isEmpty() || persona.getContrasena() == null) {
 
             throw new ErrorServicio(" La contraseña no puede ser nula");
 
         }
         if (!(contrasena2.equals(persona.getContrasena()))) {
 
-            throw new ErrorServicio(" La contraseña tienen que ser iguales");
+            throw new ErrorServicio(" La contraseñas tienen que ser iguales");
 
         }
-        
-        
 
         return persona;
 
@@ -66,31 +63,32 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
         Persona personaFinal = validarPersona(persona, contrasena2);
 
         personaFinal.setContrasena(encoder.encode(personaFinal.getContrasena()));
-        personaFinal.setRol(new Role(1, "user"));
+        Role role = new Role(1, "user");
+
+        rolesRepositorio.save(role);
+
+        personaFinal.setRol(role);
         return personaRepositorio.save(personaFinal);
 
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        
+
         Persona persona = findByNombre(username);
-        
+
         List<GrantedAuthority> auth = new ArrayList();
         auth.add(new SimpleGrantedAuthority(persona.getRol().getRol()));
-        
-        return new User(persona.getNombre(), persona.getContrasena(), auth);       
+
+        return new User(persona.getNombre(), persona.getContrasena(), auth);
 
     }
 
     @Override
     public Persona findByNombre(String nombre) {
-        
+
         return personaRepositorio.findByNombre(nombre);
 
     }
-    
-    
-    
 
 }

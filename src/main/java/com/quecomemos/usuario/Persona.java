@@ -4,7 +4,7 @@
  */
 package com.quecomemos.usuario;
 
-import com.quecomemos.login.Role;
+import com.quecomemos.roles.Role;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

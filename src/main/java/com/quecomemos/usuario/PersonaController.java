@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -29,8 +30,7 @@ public class PersonaController {
     @GetMapping("/crear-persona")
     public String crearPersona(Model model) {
 
-        model.addAttribute("persona", new Persona());
-
+        //model.addAttribute("persona", new Persona());
         return "crear-persona.html";
     }
 
@@ -41,14 +41,23 @@ public class PersonaController {
     }
 
     @PostMapping("/guardar-persona")
-    public String guardarPersona(ModelMap model, RedirectAttributes redirect,
-            @ModelAttribute Persona persona, String contrasena2) throws ErrorServicio {
+    public String guardarPersona(ModelMap model, RedirectAttributes redirect, @RequestParam String nombre,
+            @RequestParam String apellido, @RequestParam String contrasena, @RequestParam String contrasena2) throws ErrorServicio {
         try {
+            Persona persona = new Persona();
+            persona.setNombre(nombre);
+            persona.setApellido(apellido);
+            persona.setContrasena(contrasena);
+            persona.setAlta(Boolean.TRUE);
+
             personaServicio.guardar(persona, contrasena2);
 
         } catch (ErrorServicio e) {
-            redirect.addFlashAttribute("error", e.getMessage());
-            return "redirect:/persona/crear-persona";
+            model.put("error", e.getMessage());
+            model.put("nombre", nombre);
+            model.put("apellido", apellido);
+
+            return "crear-persona.html";
         }
         return "buscar-receta.html";
     }

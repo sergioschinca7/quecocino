@@ -5,12 +5,11 @@
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
         <div class="container text-capitalize">
-            <p th:if="${error} != null" th:text="${err}"></p>
 
 
             <table class="table table-striped table-hover table-sm table-bordered">
                 <thead>
-                    <tr th:if="${!receta.isEmpty()}">
+                    <tr th:if="${!#lists.isEmpty(recetas)}">
                         <th scope="col" >Nombre de la Receta</th>                                   
                         <th scope="col" >Duracion</th>
                         <th scope="col" >Complejidad</th>                    
@@ -18,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="receta :${receta}" th:if="${!receta.isEmpty()}">
+                    <tr th:each="receta :${recetas}" th:if="${!#lists.isEmpty(recetas)}">
                         <td th:text="${receta.nombre}"></td>
                         <td th:text="${receta.duracion}"></td>
                         <td th:text="${receta.complejidad}"></td>
@@ -29,7 +28,7 @@
                 </tbody>
             </table>
             <div class="titulo text-center">
-                <h1 th:unless="${!receta.isEmpty()}">No hay recetas con ese nombre</h1>
+                <h1 th:if="${#lists.isEmpty(recetas)}">No hay recetas con ese nombre</h1>
             </div>
 
 

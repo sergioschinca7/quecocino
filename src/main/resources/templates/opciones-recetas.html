@@ -3,36 +3,25 @@
     <head th:replace="/plantilla/plantilla::head"></head>
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
-<!--            <div class="container-fluid">
-                <form class="d-flex" th:action="@{/receta/buscar-receta}" method="GET">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>-->
-
         <div class="container mt-3">
             <form class="row g-3">
                 <div class="col-auto"><h2 class="d-flex" th:text="${h1}"></h2></div>
 
             </form>
         </div>
-
         <div class="container text-capitalize">
             <table class="table table-striped table-hover table-sm table-bordered">
                 <thead>
-                    <tr>
-                        <th scope="col" >Nombre de la Receta</th>                  
-                        <!--<th scope="col" >Ingredientes</th>-->                    
-                        
+                    <tr >
+                        <th scope="col" >Nombre de la Receta</th>                                          
                         <th scope="col" >Duracion</th>                    
                         <th scope="col" >Complejidad</th>
                         <th scope="col" >Ver</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="receta :${recetas}">
+                    <tr th:each="receta :${recetas}" th:if="${!recetas.isEmpty()}">
                         <td th:text="${receta.nombre}"></td>
-                        <!--<td th:text="${receta.ingredientes}"></td>-->
                         <td th:text="${receta.duracion}"></td>
                         <td th:text="${receta.complejidad}"></td>
                         <td>
@@ -41,6 +30,9 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="titulo text-center">
+                <h1 th:if="${error} != null" th:text="${error}"></h1>
+            </div>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
