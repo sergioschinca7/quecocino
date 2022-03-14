@@ -59,6 +59,6 @@ public class PersonaController {
 
             return "crear-persona.html";
         }
-        return "buscar-receta.html";
+        return "login.html";
     }
 }
