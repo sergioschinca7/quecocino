@@ -20,17 +20,14 @@
                 <thead>
                     <tr>
                         <th scope="col" >Nombre del ingrediente</th>
-                        <th scope="col" >Nombre del ingrediente</th>
-
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="ingrediente, index:${lista}">
-                <td th:text="${ingrediente.nombreIngrediente}" ></td>
-                </tr>
+                    <tr th:each="ingrediente:${lista}">
+                        <td th:text="${ingrediente.nombreIngrediente}"></td>
+                    </tr>
                 </tbody>
             </table>
-
             <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
 
         </div>

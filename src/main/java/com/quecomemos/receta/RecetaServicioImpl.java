@@ -5,7 +5,11 @@
 package com.quecomemos.receta;
 
 import com.quecomemos.Errores.ErrorServicio;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +51,7 @@ public class RecetaServicioImpl implements RecetaServicio {
 
     @Override
     public Receta validarReceta(Receta receta) throws ErrorServicio {
-               
+
         if (receta.getNombre().isEmpty()) {
             throw new ErrorServicio("El nombre no puede estar vacio.");
         }
@@ -90,33 +94,97 @@ public class RecetaServicioImpl implements RecetaServicio {
         // Used to perform case insensitive search of the
         // string
         String[] result = pattern.split(cantidad);
-        
+
         return result;
     }
 
     @Override
     public Receta buscarNombre(String nombreReceta) throws ErrorServicio {
-        
+
         String nombre = nombreReceta.toUpperCase();
-        
+
         Receta receta = recetaRepositorio.buscarRecetaPorNombre(nombre);
-        
-        if (receta==null) {
+
+        if (receta == null) {
             throw new ErrorServicio("La receta no existe");
         }
-        
-        return receta;
-        
 
+        return receta;
 
     }
 
     @Override
-    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1) {
-        
-        return recetaRepositorio.findAllByIngredientesNombreIngredienteIn(ingrediente1);
+    public Receta buscarNombreSinExcepcion(String nombreReceta) {
+
+        String nombre = nombreReceta.toUpperCase();
+
+        Receta receta = recetaRepositorio.buscarRecetaPorNombre(nombre);
+
+        return receta;
+    }
+
+    @Override
+    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1) throws ErrorServicio {
+
+        for (String string : ingrediente1) {
+            System.out.println("indg " + string);
+        }
+
+        List<Receta> lista = recetaRepositorio.findAllByIngredientesNombreIngredienteIn(ingrediente1);
+
+        if (lista.isEmpty()) {
+            throw new ErrorServicio("No hay recetas con esos ingredientes.");
+        }
+        return lista;
 
     }
-    
+
+    @Override
+    public Receta buscarPorId(Integer id) {
+
+        Optional<Receta> respuesta = recetaRepositorio.findById(id);
+
+        Receta receta = respuesta.get();
+
+        return receta;
+
+    }
+
+    @Override
+    public List<Receta> buscar(String nombreReceta) throws ErrorServicio {
+
+        String nombreReceta1 = nombreReceta.toUpperCase();
+        List<Receta> listaReceta = new ArrayList();
+
+        Receta receta = buscarNombreSinExcepcion(nombreReceta1);
+        if (receta != null) {
+            listaReceta.add(receta);
+        }
+        if (listaReceta.isEmpty()) {
+            List<String> ingredientes = Arrays.asList(nombreReceta1);
+
+            List<Receta> buscarRecetas = findAllByIngredientesNombreIngrediente(ingredientes);
+            HashSet<Receta> recetas = new HashSet(buscarRecetas);
+            listaReceta = new ArrayList(recetas);
+        }
+        if (listaReceta.isEmpty()) {
+            throw new ErrorServicio("");
+        }
+
+        return listaReceta;
+
+    }
+
+    @Override
+    public List<Receta> busquedaPorIng(List<String> ingredientes) throws ErrorServicio {
+
+        List<Receta> lista = findAllByIngredientesNombreIngrediente(ingredientes);
+
+        if (lista.isEmpty()) {
+            throw new ErrorServicio("No hay recetas con esos ingredientes");
+        }
+        return lista;
+
+    }
 
 }

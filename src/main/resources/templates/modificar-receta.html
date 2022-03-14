@@ -3,14 +3,6 @@
     <head th:replace="/plantilla/plantilla::head"></head>
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
-<<<<<<< HEAD
-        
-        <aside th:replace="/plantilla/plantilla::aside"> </aside>
-        
-        <div class="cont">
-            <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form">
-                <p th:if="${error} != null" th:text="${error}"></p>
-=======
         <div class="container mt-3">
             <form
                 class="row g-3"
@@ -19,17 +11,16 @@
                 method="POST"
                 th:object="${recetas}"
                 >
-                <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <span th:text="${error}" ></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
->>>>>>> 68027d99311bfa44a7c16c4767e77c2759f84b40
+                <p th:if="${error} != null" th:text="${error}"></p>
                 <input th:field="*{id}" type="hidden"/>
 
-                <label class="cont__label-tittle">Nombre Receta</label>
-                <input type="text" th:field="*{nombre}"/><br>
-                <div class="cont__form-div">
-                    <table>
+
+                <label>Nombre Receta</label>
+                <input type="text" th:field="*{nombre}" th:text="*{nombre}"/>
+                <div class="container text-capitalize">
+                    <table
+                        class="table table-striped table-hover table-sm table-bordered"
+                        >
                         <thead>
                             <tr>
                                 <th scope="col">Ingrediente</th>
@@ -60,13 +51,13 @@
                                            th:id="'cantidad'+${index.index}">    
                                 </td>
                                 <td>
-                                    <button type="button"
+                                    <button type="button" class="btn btn-primary"
                                             th:attr="onclick=|agregar('ingrediente',${index.index})|">Agregar
                                     </button>
                                 </td>
 
                                 <td>
-                                    <button type="button"
+                                    <button type="button" class="btn btn-danger"
                                             th:attr="onclick=|eliminar('ingrediente',${index.index})|">Eliminar
                                     </button>
                                 </td>
@@ -75,35 +66,24 @@
                     </table>
                 </div>
 
-<<<<<<< HEAD
-                <label class="cont__label">Procedimiento</label>
-                <textarea class="textarea__procedimiento" rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
-                <label class="cont__label">Duración</label>
-=======
-                <div class="container text-capitalize">
-
-                    <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
-
-                </div>
                 <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
+                <textarea rows = "5" cols = "50" th:field="*{procedimiento}" th:text="*{procedimiento}">procedimiento</textarea>
                 <label>Duración</label>
->>>>>>> 68027d99311bfa44a7c16c4767e77c2759f84b40
-                <input type="text" th:field="*{duracion}"/>
+                <input type="text" th:field="*{duracion}" th:text="*{duracion}"/>
 
-                <label class="cont__label">Complejidad</label>
+                <label>Complejidad</label>
                 <select name="complejidad" th:field="*{complejidad}">
                     <option th:each="complejidad : ${T(com.quecomemos.enumeraciones.Complejidad).values()}" 
                             th:value="${complejidad}" th:text="${complejidad.displayName}"></option>
                 </select>
 
-                <label class="cont__label">Categoría</label>
+                <label>Categoría</label>
                 <select name="categoria" th:field="*{categoria}">
                     <option th:each="categoria : ${T(com.quecomemos.enumeraciones.Categoria).values()}" 
                             th:value="${categoria}" th:text="${categoria.displayName}"></option>
                 </select>
 
-                <label class="cont__label">Valor Calórico</label>
+                <label>Valor Calórico</label>
                 <select name="valorCalorico" th:field="*{valorCalorico}">
                     <option th:each="valorCalorico : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
                             th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
@@ -115,7 +95,8 @@
             </form>
         </div>
 
-        <footer th:replace="plantilla/plantilla.html :: footer"></footer>
-
+        <div class="container text-capitalize">
+        </div>
     </body>
 </html>
+

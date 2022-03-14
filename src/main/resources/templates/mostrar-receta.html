@@ -32,6 +32,7 @@
                         <th scope="col" >Duracion</th>                    
                         <th scope="col" >Complejidad</th>
                         <th scope="col" >Ver</th>
+                        <th sec:authorize="hasAnyRole('ROLE_ADMIN')" scope="col" >Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,9 @@
                         <td th:text="${receta.complejidad}"></td>
                         <td>
                             <a th:href="@{/receta/receta-detalle}+'?id='+${receta.id}" class="btn btn-primary">Ver</a>
+                        </td>
+                        <td sec:authorize="hasAnyRole('ROLE_ADMIN')" >
+                            <a th:href="@{/receta/editar-receta}+'?id='+${receta.id}" class="btn btn-primary">Editar</a>
                         </td>
 
 

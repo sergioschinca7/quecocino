@@ -24,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Order(1)
 public class ConfiguracionesSeguridad extends WebSecurityConfigurerAdapter {
 
@@ -38,12 +38,6 @@ public class ConfiguracionesSeguridad extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/account/**").access("hasRole('ROLE_ADMIN')")
                 .antMatchers("/receta/crear-receta", "/ingrediente/crear").authenticated().and().formLogin().permitAll();
-//                .and()
-//                .formLogin(form -> form
-//                        .loginPage("/login")
-//                        .defaultSuccessUrl("/home")
-//                        .failureUrl("/login?error=true")
-//                );
     }
 
     @Override

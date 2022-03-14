@@ -38,7 +38,7 @@ public class RecetaControlador {
     @GetMapping("/crear-receta")
     public String toGuardarReceta(Model model) {
 
-        model.addAttribute("lista", ingredienteServicio.listar());
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
         Receta receta = new Receta();
 
         for (int i = 0; i < 50; i++) {
@@ -48,6 +48,26 @@ public class RecetaControlador {
 
         model.addAttribute("recetas", receta);
         return "crear-receta.html";
+    }
+
+    @GetMapping("/editar-receta")
+    public String editarReceta(Model model, Integer id) {
+        Receta receta = recetaServicio.buscarPorId(id);
+        Receta editada = new Receta();
+        //editada.setId(id);
+        editada.setNombre(receta.getNombre());
+        editada.setProcedimiento(receta.getProcedimiento());
+
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
+
+        for (int i = 0; i < 50; i++) {
+            Ingrediente ing = null;
+            editada.getIngredientes().add(ing);
+        }
+
+        model.addAttribute("recetas", editada);
+        recetaServicio.eliminarReceta(id);
+        return "modificar-receta.html";
     }
 
     @PostMapping("/guardar-receta")
@@ -77,7 +97,9 @@ public class RecetaControlador {
                 seleccionados.add(ingrediente);
             }
 
-            receta.setIngredientes(seleccionados);
+            HashSet<Ingrediente> sel = new HashSet(seleccionados);
+            ArrayList<Ingrediente> select = new ArrayList(sel);
+            receta.setIngredientes(select);
 
             recetaServicio.crearReceta(aPersistir);
 
@@ -105,10 +127,25 @@ public class RecetaControlador {
         return "buscar-receta.html";
     }
 
+    @GetMapping("/receta-navbar")
+    public String recetaNavbar(ModelMap model, String nombreReceta) throws ErrorServicio {
+
+        try {
+            List<Receta> receta = recetaServicio.buscar(nombreReceta);
+            model.addAttribute("recetas", receta);
+            return "receta-navbar.html";
+
+        } catch (ErrorServicio e) {
+            model.put("error", e.getMessage());
+            return "receta-navbar.html";
+        }
+    }
+
     @GetMapping("/receta-por-nombre")
     public String recetaPorNombre(ModelMap model, String nombreReceta) {
 
         try {
+
             Receta receta = recetaServicio.buscarNombre(nombreReceta);
             model.addAttribute("receta", receta);
 
@@ -123,7 +160,8 @@ public class RecetaControlador {
     @GetMapping("/por-ingrediente")
     public String decimeQueComer(Model model) {
 
-        model.addAttribute("lista", ingredienteServicio.listar());
+        //model.addAttribute("lista", ingredienteServicio.listar());
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
 
         return "por-ingrediente.html";
     }
@@ -132,22 +170,20 @@ public class RecetaControlador {
     public String recetaPorIngrediente(ModelMap model,
             @RequestParam(required = false) String ingrediente1,
             @RequestParam(required = false) String ingrediente2,
-            @RequestParam(required = false) String ingrediente3) {
+            @RequestParam(required = false) String ingrediente3) throws ErrorServicio {
+        try {
+            List<String> ingredientes = Arrays.asList(ingrediente1, ingrediente2, ingrediente3);
+            List<Receta> buscarRecetas = recetaServicio.busquedaPorIng(ingredientes);
+            HashSet<Receta> receta = new HashSet(buscarRecetas);
+            model.addAttribute("recetas", receta);
 
-        System.out.println(ingrediente1 + " " + ingrediente2 + " " + ingrediente3 + " " + "estos son los ingredientes");
-        List<String> ingredientes = Arrays.asList(ingrediente1, ingrediente2, ingrediente3);
-        
-        List<Receta> lista = recetaServicio.findAllByIngredientesNombreIngrediente(ingredientes);
-        
-        HashSet<Receta> lista1 = new HashSet(lista);
-        
-        for (Receta receta : lista1) {
-            
-            System.out.println("recetas " + receta.getNombre());
-            
-            
+            return "opciones-recetas.html";
+
+        } catch (ErrorServicio e) {
+            model.put("error", e.getMessage());
+            return "opciones-recetas.html";
+
         }
-        return "buscar-receta.html";
 
     }
 

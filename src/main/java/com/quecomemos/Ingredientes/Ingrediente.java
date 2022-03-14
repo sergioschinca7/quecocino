@@ -7,6 +7,7 @@ package com.quecomemos.Ingredientes;
 import com.quecomemos.receta.Receta;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -65,5 +66,37 @@ public class Ingrediente implements Serializable {
     public String toString() {
         return nombreIngrediente;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.idIngrediente);
+        hash = 97 * hash + Objects.hashCode(this.nombreIngrediente);
+        hash = 97 * hash + Objects.hashCode(this.receta);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ingrediente other = (Ingrediente) obj;
+        if (!Objects.equals(this.nombreIngrediente, other.nombreIngrediente)) {
+            return false;
+        }
+        if (!Objects.equals(this.idIngrediente, other.idIngrediente)) {
+            return false;
+        }
+        return Objects.equals(this.receta, other.receta);
+    }
+    
+    
 
 }

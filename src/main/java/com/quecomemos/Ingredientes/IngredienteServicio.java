@@ -14,6 +14,8 @@ import java.util.List;
 public interface IngredienteServicio {
     
     public List<Ingrediente> listar();
+    public List<Ingrediente> listarAlfabeticamente();
+    
     
     public void eliminar(Integer id);
     

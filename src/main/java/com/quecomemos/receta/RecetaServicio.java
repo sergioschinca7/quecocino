@@ -18,6 +18,8 @@ public interface RecetaServicio {
     public void eliminarReceta(Integer id);
 
     public void crearReceta(Receta receta);
+    
+    public Receta buscarPorId(Integer id);
 
     public Receta encontrarRecetaPorId(Integer id);
 
@@ -29,6 +31,13 @@ public interface RecetaServicio {
     
     public Receta buscarNombre(String nombreReceta) throws ErrorServicio;
     
-    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1);
+    public List<Receta> findAllByIngredientesNombreIngrediente(List<String> ingrediente1) throws ErrorServicio;
+    
+    public List<Receta> buscar(String nombreReceta)throws ErrorServicio;
+    
+    public List<Receta> busquedaPorIng(List<String> ingredientes) throws ErrorServicio;
+    
+    public Receta buscarNombreSinExcepcion(String nombreReceta);
+    
 
 }
