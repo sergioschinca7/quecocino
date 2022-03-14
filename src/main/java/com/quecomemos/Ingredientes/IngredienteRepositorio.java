@@ -4,8 +4,7 @@
  */
 package com.quecomemos.Ingredientes;
 
-import com.quecomemos.receta.Receta;
-import java.util.Optional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +20,7 @@ public interface IngredienteRepositorio extends JpaRepository<Ingrediente, Integ
     @Query("SELECT i FROM Ingrediente i WHERE i.nombreIngrediente = :nombre")
     public Ingrediente buscarIngredientePorNombre(@Param("nombre") String nombre);
     
+    
+    public List<Ingrediente> findByOrderByNombreIngrediente();
     
 }
