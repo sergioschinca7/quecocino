@@ -150,3 +150,21 @@ margin-top: 1.7vh;
 font-size: 1.3em;
 color: black;
 }
+
+.container mt-3{
+background-color: blue;
+}
+
+.clase2{
+  background-color: red;
+}
+
+.clase3{
+  background-color: green;
+  opacity: 0.5;
+}
+
+.clase4{
+  background-color: yellow;
+  opacity: 0.5;
+}
