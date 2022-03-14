@@ -1,116 +1,90 @@
-* {
+*{
 }
+
 .navegador {
   background-color: #e5e3c9;
-  border-style: dashed;
+  display: inline-block;
   width: 100%;
-  box-sizing: border-box;
+  height: 14%;
 }
-
 .navegador__ul {
+  height:8vh;
 }
-
-
+.navegador__ul--li {
+  display:inline-block;
+  margin-left: 2%;
+  margin-right: 1.5%;
+}
 .logo {
   display: inline-block;
   object-fit: cover;
   width: 10vw;
   height: 7vh;
-  margin-right: 40vw;
+  margin-right: 44vw;
 }
-
 .icono-redsocial{
-    display:inline-block;
-    height:2.7vw;
+ height: 5vh;
 }
-
-.navegador__ul--li {
-  display: inline-block;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-}
-
 .navegador__ul--input {
-    font-size: 1,5em;
-    float: right;
-    width: 12vw;
-    height: 2vh;
-    margin-bottom: 0.7em;
+  display: inline-block;
+  width: 15vw;
+  margin: 10px;
+  vertical-align: bottom;
 }
 
 .navegador__ul--input::placeholder {
   color: gray;
 }
 
+/*--------------------------------------------------------------------------------------------------------------*/
 
-.lateral {
-  width: 100%;
-  height: 6vh;
-  margin: 0;
-
+.lateral{
   background-color: #b4cfb0;
-
-
-  border-color: #789395;
-  font-size: 4vh;
-  position: sticky;
-  box-sizing: border-box;
 }
-
-.lateral__li {
-  font-family: 'Dancing Script', cursive;
-  display: inline-block;
-  margin-left: 9vw;
+.aside__box{
+  display: flex;
+  justify-content: space-evenly;
 }
-
+.aside__elem{
+  margin:1vh;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5em;
+}
 a:link, a:visited, a:active {
   text-decoration:none;
   color:black;
 }
 
+/*--------------------------------------------------------------------------------------------------------------*/
 
-.lateral__li:visited, .lateral__li:link, .lateral__li:active{
-  text-decoration: none;
+body {
+  background-image: url("https://images.freeimages.com/images/premium/previews/3513/35135220-cookery-seamless-background.jpg");
+  background-repeat: repeat;
+  background-size: 60rem;
+  position: relative;
+  padding-bottom:3em;
+  min-height: 100vh;
 }
 
-.container mt-3{
-  
+/*--------------------------------------------------------------------------------------------------------------*/
+.cont{
+display:flex;
+flex-wrap: wrap;
+justify-content: center;
 }
 
-.pie{
-  width: 100%;
-  height: 5vh;
-  margin: 0;
-
-  background-color: #b4cfb0;
-
-
-  border-color: #789395;
-  font-size: 3.5vh;
-  position: absolute;
-  bottom:0;
-  box-sizing: border-box;
+.cont__form{
+  display: flex;
+  flex-direction: column;
+  background-color: #94B49F;
+  padding: 2em;
+  justify-content: center;
+  margin: 14vh;
 }
 
-.pie__li{
-display:inline-block;
-margin-left: 9.8vw;
-font-family: 'Lato', sans-serif;
-}
-
-.cuerpo{
-  background-color: gainsboro;
-} 
-
-.cont-form{
-  display:inline-block;
-  position: absolute;
-  margin-left: 30vw;
-  margin-top: 10vh;
-  background-color: antiquewhite;
-  height: 40vh;
-  width: 40vw;
-  border: dashed darkgreen;
+.cont__label-tittle{
+font-size: 2em;
+margin:auto;
 }
 
 .form-label{
@@ -132,25 +106,47 @@ display:inline-block;
 width:10vw;
 }
 
-.cont-table{
-border: dashed red;
+.button__add, .button__delete{
+  background-color: #789395;
 }
 
-.table{
-  display: block;
-  z-index: 5;
-  border:solid green;
-  background-color: rgb(219, 223, 191);
+.input__cantidad, .input__ingrediente, .form__select, .input__tittle, .textarea__procedimiento{
+  background-color: #e5e3c9;
 }
 
-.table-th{
-display:inline-block;
+.cont__label{
+  font-size: 1.4em;
 }
 
-.table-td{
-display: inline-block;
+.cont__input{
+  background-color: #e5e3c9;
+  font-size:1.4em;
 }
 
-.table-tr{
-  background-color: aquamarine;
+.cont__select{
+  background-color: #e5e3c9;
+  font-size:1.4em;
+}
+
+.input__save{
+  background-color: #789395;
+  font-size:1.4em;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+.pie{
+  height: 7vh;
+  width: 100%;
+  background-color: #789395;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+.pie__p{
+font-family: 'Lato', sans-serif;
+margin-top: 1.7vh;
+font-size: 1.3em;
+color: black;
 }
