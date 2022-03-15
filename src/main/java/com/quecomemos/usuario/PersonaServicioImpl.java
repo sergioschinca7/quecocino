@@ -3,8 +3,10 @@ package com.quecomemos.usuario;
 import com.quecomemos.Errores.ErrorServicio;
 import com.quecomemos.roles.Role;
 import com.quecomemos.roles.RolesRepositorio;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,6 +29,9 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
     @Override
     public Persona validarPersona(Persona persona, String contrasena2) throws ErrorServicio {
 
+        Persona p = buscarPorUsuario(persona.getNombreUsuario());
+
+
         if (persona.getNombre().isEmpty() || persona.getNombre() == null || persona.getNombre().length() < 3) {
             throw new ErrorServicio(" El nombre no puede estar vacío o tener menos de 3 caracteres");
         }
@@ -35,6 +40,9 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
         }
         if (persona.getNombre().equalsIgnoreCase(persona.getApellido())) {
             throw new ErrorServicio("Nombre y Apellido no pueden ser iguales");
+        }
+        if (persona.getNombreUsuario().isEmpty() || persona.getNombreUsuario() == null) {
+            throw new ErrorServicio("El nombre de usuario no puede estar vacío");
         }
 
         if (contrasena2 == null) {
@@ -52,6 +60,7 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
             throw new ErrorServicio(" La contraseñas tienen que ser iguales");
 
         }
+
 
         return persona;
 
@@ -75,12 +84,12 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Persona persona = findByNombre(username);
+        Persona persona = personaRepositorio.findByNombreUsuario(username);
 
         List<GrantedAuthority> auth = new ArrayList();
         auth.add(new SimpleGrantedAuthority(persona.getRol().getRol()));
 
-        return new User(persona.getNombre(), persona.getContrasena(), auth);
+        return new User(persona.getNombreUsuario(), persona.getContrasena(), auth);
 
     }
 
@@ -89,6 +98,17 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
 
         return personaRepositorio.findByNombre(nombre);
 
+    }
+
+    @Override
+    public Persona buscarPorUsuario(String nombreUsuario) throws ErrorServicio {
+        Persona p = personaRepositorio.findByNombreUsuario(nombreUsuario);
+
+        if (p != null) {
+            throw new ErrorServicio("El nombre de usuario ya existe");
+        }
+
+        return p;
     }
 
 }

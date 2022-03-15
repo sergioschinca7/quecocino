@@ -30,6 +30,7 @@ public class Persona implements Serializable {
     private String nombre;
     private String apellido;
     private String contrasena;
+    private String nombreUsuario;
     
     private Boolean alta;
 
@@ -47,6 +48,14 @@ public class Persona implements Serializable {
 
     public Integer getId() {
         return id;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public void setId(Integer id) {

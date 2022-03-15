@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- *
  * @author Sergio
  */
 @Controller
@@ -42,12 +41,15 @@ public class PersonaController {
 
     @PostMapping("/guardar-persona")
     public String guardarPersona(ModelMap model, RedirectAttributes redirect, @RequestParam String nombre,
-            @RequestParam String apellido, @RequestParam String contrasena, @RequestParam String contrasena2) throws ErrorServicio {
+                                 @RequestParam String apellido, @RequestParam String nombreUsuario,
+                                 @RequestParam String contrasena,
+                                 @RequestParam String contrasena2) throws ErrorServicio {
         try {
             Persona persona = new Persona();
             persona.setNombre(nombre);
             persona.setApellido(apellido);
             persona.setContrasena(contrasena);
+            persona.setNombreUsuario(nombreUsuario);
             persona.setAlta(Boolean.TRUE);
 
             personaServicio.guardar(persona, contrasena2);
@@ -59,6 +61,6 @@ public class PersonaController {
 
             return "crear-persona.html";
         }
-        return "buscar-receta.html";
+        return "redirect:/persona/login";
     }
 }

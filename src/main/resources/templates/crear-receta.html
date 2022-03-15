@@ -3,27 +3,12 @@
     <head th:replace="/plantilla/plantilla::head"></head>
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
-<<<<<<< HEAD
         
         <aside th:replace="/plantilla/plantilla::aside"> </aside>
         
         <div class="cont">
             <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form">
                 <p th:if="${error} != null" th:text="${error}"></p>
-=======
-        <div class="container mt-3">
-            <form
-                class="row g-3"
-                th:action="@{/receta/guardar-receta}"
-
-                method="POST"
-                th:object="${recetas}"
-                >
-                <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <span th:text="${error}" ></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
->>>>>>> da35b6ac46a0891fe9c76cc712254d6af791403a
                 <input th:field="*{id}" type="hidden"/>
 
                 <label class="cont__label-tittle">Nombre Receta</label>
@@ -46,12 +31,8 @@
 
                                 <td>
                                     <select th:field="*{ingredientes[__${index.index}__].nombreIngrediente}"
-<<<<<<< HEAD
                                             th:id="'nombreIngrediente'+${index.index}"
                                             class="form__select">
-=======
-                                            th:id="'nombreIngrediente'+${index.index}">
->>>>>>> da35b6ac46a0891fe9c76cc712254d6af791403a
                                         <option value=""> </option>                                                                         
                                         <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
                                                 th:value="${l.nombreIngrediente}"></option>
@@ -84,22 +65,10 @@
                     </table>
                 </div>
 
-<<<<<<< HEAD
                 <label class="cont__label">Procedimiento</label>
                 <textarea class="textarea__procedimiento" rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
                 <label class="cont__label">Duración</label>
                 <input type="text" th:field="*{duracion}" class="cont__input"/>
-=======
-                <div class="container text-capitalize">
-
-                    <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
-
-                </div>
-                <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
-                <label>Duración</label>
-                <input type="text" th:field="*{duracion}"/>
->>>>>>> da35b6ac46a0891fe9c76cc712254d6af791403a
 
                 <label class="cont__label">Complejidad</label>
                 <select name="complejidad" th:field="*{complejidad}" class="cont__select">
@@ -119,11 +88,7 @@
                             th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
                 </select>
 
-<<<<<<< HEAD
                 <input type="submit" name="action" value="Guardar" confirm="guardar" class="input__save"/>
-=======
-                <input type="submit" name="action" value="Guardar" confirm="guardar"/>
->>>>>>> da35b6ac46a0891fe9c76cc712254d6af791403a
                 <p th:if="${error} != null" th:text="${error}"></p>
 
             </form>

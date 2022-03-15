@@ -110,6 +110,8 @@ width:10vw;
   background-color: #789395;
 }
 
+
+
 .input__cantidad, .input__ingrediente, .form__select, .input__tittle, .textarea__procedimiento{
   background-color: #e5e3c9;
 }
@@ -151,20 +153,54 @@ font-size: 1.3em;
 color: black;
 }
 
-.container mt-3{
+.container_mt-3{
+display:flex;
 background-color: blue;
 }
 
-.clase2{
+.row_mt-3{
+  display:flex;
   background-color: red;
 }
 
-.clase3{
+.container_text-capitalize{
   background-color: green;
   opacity: 0.5;
 }
 
-.clase4{
-  background-color: yellow;
-  opacity: 0.5;
+.table{
+  background-color:#e5e3c9;
+}
+
+/*-----------------------------------------------------------*/
+
+.cont__button{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap:wrap;
+}
+
+.button__add2{
+  background-color:#e5e3c9;
+  margin-bottom:2em;
+  position:relative;
+  width:12vw;
+  text-align: center;
+  padding:1em;
+  font-size: 1.5em;
+
+  border-style: ridge;
+  border-color: #789395;
+  border-width:0.5em;
+}
+
+.tr{
+}
+
+.td{
+border-style:solid;
+border-color:gray;
+border-left: none;
+border-right:none;
+border-top:none;
 }
