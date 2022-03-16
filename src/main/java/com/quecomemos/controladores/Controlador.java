@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Sergio
  */
 @Controller
-
 public class Controlador {
 
     @GetMapping("/")
     public String index() {
+
+
 
         return "index.html";
     }
