@@ -1,0 +1,248 @@
+*{
+}
+
+.navegador {
+  background-color: #e5e3c9;
+  display: inline-block;
+  width: 100%;
+  height: 14%;
+}
+.navegador__ul {
+  height:8vh;
+}
+.navegador__ul--li {
+  display:inline-block;
+  margin-left: 2%;
+  margin-right: 1.5%;
+}
+.logo {
+  display: inline-block;
+  object-fit: cover;
+  width: 10vw;
+  height: 7vh;
+  margin-right: 44vw;
+}
+.icono-redsocial{
+ height: 5vh;
+}
+.navegador__ul--input {
+  display: inline-block;
+  width: 15vw;
+  margin: 10px;
+  vertical-align: bottom;
+}
+
+.navegador__ul--input::placeholder {
+  color: gray;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+
+.lateral{
+  background-color: #b4cfb0;
+}
+.aside__box{
+  display: flex;
+  justify-content: space-evenly;
+}
+.aside__elem{
+  margin:1vh;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5em;
+}
+a:link, a:visited, a:active {
+  text-decoration:none;
+  color:black;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+
+body {
+  background-image: url("https://images.freeimages.com/images/premium/previews/3513/35135220-cookery-seamless-background.jpg");
+  background-repeat: repeat;
+  background-size: 60rem;
+  position: relative;
+  padding-bottom:3em;
+  min-height: 100vh;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+.cont{
+display:flex;
+flex-wrap: wrap;
+justify-content: center;
+}
+
+.cont__form{
+  display: flex;
+  flex-direction: column;
+  background-color: #94B49F;
+  padding: 3em;
+  justify-content: center;
+  margin: 14vh;
+}
+
+.cont__form2{
+  width:40vw;
+  display: flex;
+  flex-direction: column;
+  background-color: #94B49F;
+  padding: 2em;
+  justify-content: center;
+  margin: 30vh;
+  margin-top:0;
+}
+
+.cont__parrafo{
+  margin-top:10vh;
+  width:40vw;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #94B49F;
+  padding: 2em;
+  justify-content: center;
+}
+
+.cont__label-tittle{
+font-size: 2em;
+margin:auto;
+}
+
+.form-label{
+display:block;
+margin-left: 15vw;
+}
+
+.form-input{
+display:block;
+margin-left: 15vw;
+}
+
+.form-select{
+  display: block;
+}
+
+.form-select_optional{
+display:inline-block;
+width:10vw;
+}
+
+.button__add, .button__delete{
+  background-color: #789395;
+}
+
+
+
+.input__cantidad, .input__ingrediente, .form__select, .input__tittle, .textarea__procedimiento{
+  background-color: #e5e3c9;
+}
+
+.cont__label{
+  font-size: 1.4em;
+}
+
+.cont__label-red{
+  font-size:1.4em;
+  margin:0;
+  color: rgba(224, 30, 30, 0.897);
+}
+
+.cont__input{
+  background-color: #e5e3c9;
+  font-size:1.4em;
+}
+
+.cont__select{
+  background-color: #e5e3c9;
+  font-size:1.4em;
+}
+
+.input__save{
+  background-color: #789395;
+  font-size:1.4em;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+.pie{
+  height: 7vh;
+  width: 100%;
+  background-color: #789395;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}
+.pie__p{
+font-family: 'Lato', sans-serif;
+margin-top: 1.7vh;
+font-size: 1.3em;
+color: black;
+}
+
+.table{
+  background-color:#e5e3c9;
+  overflow: scroll;
+}
+
+/*-----------------------------------------------------------*/
+
+.cont__button{
+  display:flex;
+  justify-content: space-evenly;
+  flex-wrap:wrap;
+}
+
+.button__add2{
+  background-color:#e5e3c9;
+  margin-bottom:2em;
+  width:12vw;
+  text-align: center;
+  padding:1em;
+  font-size: 1.5em;
+
+  border-style: ridge;
+  border-color: #789395;
+  border-width:0.5em;
+}
+
+
+.td{
+border-style:solid;
+border-color:gray;
+border-left: none;
+border-right:none;
+border-top:none;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------*/
+.button__add3{
+  background-color:#e5e3c9;
+  width:12vw;
+  text-align: center;
+  font-size: 1.5em;
+  margin-left:auto;
+  margin-right: auto;
+  padding: 1em;
+  border: ridge #789395 0.5em;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------*/
+
+.cont__parrafo{
+  background-color: #94B49F;
+}
+
+/*-----------------------------------------------------------------------------------------------------------------------------------*/
+
+h1{
+  background-color: #e5e3c9;
+  padding:1em;
+}
+
+.cont__parrafo p{
+  background-color: #e5e3c9;
+  padding:1em;
+  font-size: 1.4em;
+}

@@ -3,22 +3,27 @@
     <head th:replace="/plantilla/plantilla::head"></head>
 
     <body>
+
         <nav th:replace="/plantilla/plantilla::nav"></nav>
-        <div class="container mt-3">
-            <form class="row g-3" th:action="@{/receta/receta-por-nombre}" method="GET">
+
+        <aside th:replace="/plantilla/plantilla::aside"></aside>
+
+        <div class="cont">
+            <form class="cont__form" th:action="@{/receta/receta-por-nombre}" method="GET">
                 
-                <label>Ingrese el nombre de la receta</label>
-                <input type="text" name="nombreReceta" placeholder="nombre de la receta">
+                <label class="cont__label">Ingrese el nombre de la receta</label>
+                <input class="cont__input" type="text" name="nombreReceta" placeholder="nombre de la receta">
 
-                <input type="submit" value="Buscar">
+                <input class="input__save" type="submit" value="Buscar">
 
-                <p th:if="${error} !=null" th:text="${error}"></p>
+                <p class="cont__label-red" th:if="${error} !=null" th:text="${error}"></p>
 
             </form>
         </div>
 
         <div class="container text-capitalize">
 
+        <footer th:replace="plantilla/plantilla.html :: footer"></footer>
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

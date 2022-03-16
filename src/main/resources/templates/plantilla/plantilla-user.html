@@ -19,7 +19,6 @@
     </head>
 
     <body>      
-
         <nav th:fragment="nav" class="navegador">                       
             <ul class="navegador__ul">    
                 <li class="navegador__ul--li"><a href="index.html"><img src="../static/quecocino.png"  th:src="@{/quecocino.png}" class="logo"></a></li>
@@ -31,8 +30,8 @@
 
         <aside th:fragment="aside" class="lateral">
             <div class="aside__box">
-                <div class="aside__elem"><a href="http://localhost:8080/persona/login">Iniciar Sesión</a></div> 
-                <div class="aside__elem"><a href="http://localhost:8080/persona/crear-persona">Regístrate</a></div>  
+                <div class="aside__elem"><a href="http://localhost:8080/logout">Cerrar Sesión</a></div> 
+                <div class="aside__elem"><a href="http://localhost:8080/ingrediente/lista">Añadir Ingrediente</a></div>  
                 <div class="aside__elem"><a href="http://localhost:8080/receta/crear-receta">Crear Receta</a></div>  
                 <div class="aside__elem"><a href="http://localhost:8080/index">¿Qué cocino?</a></div>             
            </div>
@@ -41,8 +40,6 @@
         <footer th:fragment="footer" class="pie">
             <p class="pie__p">©️ 2021-2022 Todos los derechos reservados</p>
         </footer>
-
-
     </body>   
 </html>
 
