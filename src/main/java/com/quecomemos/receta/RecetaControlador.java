@@ -3,17 +3,20 @@ package com.quecomemos.receta;
 import com.quecomemos.Errores.ErrorServicio;
 import com.quecomemos.Ingredientes.Ingrediente;
 import com.quecomemos.Ingredientes.IngredienteServicio;
+import com.quecomemos.foto.Foto;
+import com.quecomemos.foto.FotoServicio;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -22,6 +25,9 @@ public class RecetaControlador {
 
     @Autowired
     private RecetaServicio recetaServicio;
+
+    @Autowired
+    private FotoServicio fotoServicio;
 
     @Autowired
     private IngredienteServicio ingredienteServicio;
@@ -72,7 +78,7 @@ public class RecetaControlador {
 
     @PostMapping("/guardar-receta")
     public String guardarReceta(@ModelAttribute Receta receta, RedirectAttributes redirect,
-            ModelMap model) throws ErrorServicio {
+                                ModelMap model, MultipartFile archivo) throws ErrorServicio {
 
         ArrayList<Ingrediente> seleccionados = new ArrayList();
         Iterator<Ingrediente> it = receta.getIngredientes().iterator();
@@ -100,7 +106,8 @@ public class RecetaControlador {
             HashSet<Ingrediente> sel = new HashSet(seleccionados);
             ArrayList<Ingrediente> select = new ArrayList(sel);
             receta.setIngredientes(select);
-
+            Foto foto = fotoServicio.guardar(archivo);
+            receta.setFoto(foto);
             recetaServicio.crearReceta(aPersistir);
 
         } catch (ErrorServicio e) {
