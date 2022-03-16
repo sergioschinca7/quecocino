@@ -1,6 +1,8 @@
 package com.quecomemos.receta;
 
 import com.quecomemos.Ingredientes.Ingrediente;
+import com.quecomemos.foto.Foto;
+
 import com.quecomemos.enumeraciones.Categoria;
 import com.quecomemos.enumeraciones.Complejidad;
 import com.quecomemos.enumeraciones.ValorCalorico;
@@ -8,17 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "recetas")
@@ -56,6 +48,17 @@ public class Receta implements Serializable {
 
     @Column(name = "cantidad", columnDefinition = "LONGBLOB")
     private ArrayList<String> cantidad = new ArrayList();
+
+    @OneToOne
+    private Foto foto;
+
+    public Foto getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Foto foto) {
+        this.foto = foto;
+    }
 
     public Ingrediente getIngrediente(int i) {
         return this.ingredientes.get(i);
