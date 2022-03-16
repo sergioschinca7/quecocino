@@ -9,6 +9,7 @@
                 th:action="@{/receta/guardar-receta}"
 
                 method="POST"
+                enctype="multipart/form-data"
                 th:object="${recetas}"
                 >
                 <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -74,6 +75,10 @@
                     <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
 
                 </div>
+
+                <label>Foto</label>
+                <input type="file" name="archivo">
+
                 <label>Procedimiento</label>
                 <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
                 <label>Duración</label>
