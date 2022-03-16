@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
-    <head th:replace="/plantilla/plantilla::head"></head>
-    <body>
-        <nav th:replace="/plantilla/plantilla::nav"></nav>
+<head th:replace="/plantilla/plantilla::head"></head>
+<body>
+    <nav th:replace="/plantilla/plantilla::nav"></nav>
 
+<<<<<<< HEAD
         <div class="container">
             <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                 <span th:text="${error}" ></span>
@@ -14,31 +15,47 @@
                     <h1>Registrar Usuario</h1>
                 </div>
                 <div class="card-body">
+=======
+    <aside th:replace="/plantilla/plantilla::aside"> </aside>
+>>>>>>> jose
 
-                    <form th:action="@{/persona/guardar-persona}" method="POST" class="col-6 mx-auto">
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" th:value="${nombre}">
-                        </div>
-                        <div class="mb-3">
-                            <label for="edad" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" name="apellido" th:value="${apellido}">
-                        </div>
+    <div class="cont">
 
-                        <div class="mb-3">
-                            <label for="Contraseña" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="contrasena">
-                        </div>
-                        <div class="mb-3">
-                            <label for="Repetir la contraseña" class="form-label">Repetir la contraseña</label>
-                            <input type="password" class="form-control" name="contrasena2">
-                        </div>
 
-                        <button type="submit" name="action" value="Guardar" confirm="guardar" class="btn-dark px-5 py-2 ms-auto">Guardar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </body>
+
+        <form th:action="@{/persona/guardar-persona}" method="POST" class="cont__form">                        
+
+            <h1 class="button__add3">Regístrate</h1>
+ 
+
+            <label for="nombre" class="cont__label">Nombre</label>
+            <input type="text" class="cont__input" name="nombre" th:value="${nombre}">
+        
+            <label for="apellido" class="cont__label">Apellido</label>
+            <input type="text" class="cont__input" name="apellido" th:value="${apellido}">
+        
+            <label for="nombreUsuario" class="cont__label">Nombre de Usuario</label>
+            <input type="text" class="cont__input" name="nombreUsuario" th:value="${nombreUsuario}">
+
+            <label for="Contraseña" class="cont__label">Contraseña</label>
+            <input type="password" class="cont__input" name="contrasena">
+        
+            <label for="Repetir la contraseña" class="cont__label">Repetir la contraseña</label>
+            <input type="password" class="cont__input" name="contrasena2">
+
+            <button type="submit" name="action" value="Guardar" confirm="guardar"
+                class="input__save">Guardar
+            </button>
+    </form>
+
+    <!--<div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+        <span th:text="${error}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div> -->
+
+    </div>
+</body>
+
+<footer th:replace="plantilla/plantilla.html :: footer"></footer>
 
 </html>

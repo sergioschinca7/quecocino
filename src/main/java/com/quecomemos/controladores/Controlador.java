@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Controlador {
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
 
+    model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
         return "index.html";
     }
 }

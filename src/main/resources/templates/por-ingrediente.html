@@ -5,15 +5,18 @@
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
 
-        <p align=CENTER><strong> DECIME QUE COMER </strong></p>
+        <aside th:replace="/plantilla/plantilla::aside"></aside>
 
-        <div class="container mt-3">
+        <div class="cont">
+            <div class="cont__parrafo">
+                <h1>DECIME QUE COMER</h1>
+                <p>¿No sabes que cocinar? ¿Solo tienes unos pocos ingredientes? <br> No te preocupes más, nosotros nos ocupamos. Solo dinos que ingredientes tienes.</p>
+            </div> 
             <form
-                class="row g-3"
+                class="cont__form2"
                 th:action="@{/receta/decime-que-comer}" method="GET">
                 <p th:if="${error} != null" th:text="${error}"></p>
-                <div class="container text-capitalize">
-                    <table class="table table-striped table-hover table-sm table-bordered">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">Ingrediente 1 </th>
@@ -22,7 +25,6 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <tr>
                                 <td>
                                     <select th:name="ingrediente1">
@@ -47,11 +49,12 @@
                             </tr>
                         </tbody>
                     </table>
-                </div>
-
-                <input type="submit" name="action" value="Buscar" confirm="guardar"/>
+                <input class="button__add"type="submit" name="action" value="Buscar" confirm="guardar"/>
                 <p th:if="${error} != null" th:text="${error}"></p>
             </form>
         </div>
+
+        <footer th:replace="plantilla/plantilla.html :: footer"></footer>
+
     </body>
 </html>

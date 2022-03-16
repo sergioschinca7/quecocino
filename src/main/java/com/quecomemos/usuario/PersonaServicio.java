@@ -16,5 +16,7 @@ public interface PersonaServicio {
     
     public Persona guardar(Persona persona, String contrasena2) throws ErrorServicio;
     
-     public Persona findByNombre(String nombre); 
+     public Persona findByNombre(String nombre);
+
+     public Persona buscarPorUsuario(String nombreUsuario) throws ErrorServicio;
 }
