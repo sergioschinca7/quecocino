@@ -4,7 +4,7 @@
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
         
-        <aside th:replace="/plantilla/plantilla::aside"> </aside>
+        <aside th:replace="/plantilla/plantilla-user::aside"> </aside>
         
         <div class="cont">
             <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form">
@@ -41,7 +41,7 @@
 
                                 <td>
                                     <input type="text"
-                                            class="input__cantidad"
+                                           class="input__cantidad"
                                            th:field="*{cantidad[__${index.index}__]}"
                                            th:id="'cantidad'+${index.index}">    
                                 </td>
@@ -49,7 +49,6 @@
                                     <button type="button"
                                             class="button__add"
                                             th:attr="onclick=|agregar('ingrediente',${index.index})|">Agregar
-                                            
                                     </button>
                                 </td>
 

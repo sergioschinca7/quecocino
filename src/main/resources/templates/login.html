@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head th:replace="/plantilla/plantilla::head"></head>
-    <body class="hold-transition login-page">
+    <body>
+
         <nav th:replace="/plantilla/plantilla::nav"></nav>
 
-        <div class="login-box">
-            <div class="login-logo">
-                <div class="card">
-                    <div class="card-body login-card-body">
+        <aside th:replace="/plantilla/plantilla::aside"> </aside>
+           
+                    <div class="cont">
                         <p class="login-box-msg">Sign in to start your session</p>
                         <p th:if="${loginError}" class="error">Wrong user or password</p>
-                        <form th:action="@{/login}" method="post">
+                        <form class="cont__form" th:action="@{/login}" method="post">
                             <div th:if="${param.error}">
                                 <div class="alert alert-danger">
                                     Invalid username or password.
@@ -36,9 +36,11 @@
                             <div class="row">
                                 <div class="col-4">
                                     <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
-                                </div>
-                                <!-- /.col -->
+                                 </div>
                             </div>
                         </form>
-                        </body>
-                        </html>
+                    </div>
+                  
+        <footer th:replace="plantilla/plantilla.html :: footer"></footer>
+    </body>
+</html>
