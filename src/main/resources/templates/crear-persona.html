@@ -4,24 +4,9 @@
 <body>
     <nav th:replace="/plantilla/plantilla::nav"></nav>
 
-<<<<<<< HEAD
-        <div class="container">
-            <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                <span th:text="${error}" ></span>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <div class="card mt-5">
-                <div class="card-header d-flex">
-                    <h1>Registrar Usuario</h1>
-                </div>
-                <div class="card-body">
-=======
     <aside th:replace="/plantilla/plantilla::aside"> </aside>
->>>>>>> jose
 
     <div class="cont">
-
-
 
         <form th:action="@{/persona/guardar-persona}" method="POST" class="cont__form">                        
 
@@ -46,14 +31,15 @@
             <button type="submit" name="action" value="Guardar" confirm="guardar"
                 class="input__save">Guardar
             </button>
+
+            <div th:if="${error}!= null" role="alert">
+                <span class="cont__label-red" th:text="${error}"></span>
+                <!--<button type="button" class="button__x" data-bs-dismiss="alert" aria-label="Close"></button>-->
+            </div>
     </form>
 
-    <!--<div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-        <span th:text="${error}"></span>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div> -->
-
     </div>
+
 </body>
 
 <footer th:replace="plantilla/plantilla.html :: footer"></footer>

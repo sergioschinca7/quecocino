@@ -8,63 +8,68 @@
 
         <aside th:replace="/plantilla/plantilla::aside"> </aside>
 
-        <div class="cont">
-            <div class="cont__form">
-                <table class="table">
+
+        <div class="flex-container">
+            <div class="mitad">
+                <table class="table__dif">
                     <thead>
                         <tr>
-                            <th scope="col" >Nombre de la Receta</th>                                   
-                            <th scope="col" >Duracion</th>
-                            <th scope="col" >Procedimiento</th>
-                            <th scope="col" >Complejidad</th>                    
+                            <th class="th__table-dif" scope="col" >Nombre de la Receta</th>                                   
+                            <th class="th__table-dif" scope="col" >Duracion</th>
+                           <!-- <th class="th__table-dif" scope="col" >Procedimiento</th> -->
+                            <th class="th__table-dif" scope="col" >Complejidad</th>                    
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="receta :${receta}">
-                            <td th:text="${receta.nombre}"></td>
-                            <td th:text="${receta.duracion}"></td>
-                            <td th:text="${receta.procedimiento}"></td>
-                            <td th:text="${receta.complejidad}"></td>
+                            <td class="td__table-dif" th:text="${receta.nombre}"></td>
+                            <td class="td__table-dif" th:text="${receta.duracion}"></td>
+                           <!-- <td class="td__table-dif" th:text="${receta.procedimiento}"></td> -->
+                            <td class="td__table-dif" th:text="${receta.complejidad}"></td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
 
-            <div class="cont__form">
-                <table class="table table-striped table-hover table-sm table-bordered">
+                <table class="table__dif">
                     <thead>
                         <tr>
-                            <th scope="col" >Ingredientes</th> 
-                            <th scope="col" >Cantidades</th> 
-
+                            <th class="th__table-dif" scope="col" >Ingredientes</th> 
+                            <th class="th__table-dif" scope="col" >Cantidades</th> 
+    
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="ingrediente, index :${receta.ingredientes}">
-                            <td th:text="${ingrediente.nombreIngrediente}"></td>                       
-                            <td th:text="${receta.cantidad[__${index.index}__]}"></td>                       
+                            <td class="td__table-dif" th:text="${ingrediente.nombreIngrediente}"></td>                       
+                            <td class="td__table-dif" th:text="${receta.cantidad[__${index.index}__]}"></td>                       
                         </tr>
                     </tbody>
                 </table>
-
+                
+                <div class="photo__frame">
+                    <img th:if="${receta.foto ==null}" class="photo" src="/css/foto.jpeg" alt="">
+                    <img th:if="${receta.foto !=null}" class="photo" th:src="@{/foto/receta} + '?id='+ ${receta.id}" alt="">  
+                </div>
             </div>
 
-            <div class="cont__form">
-                <table class="table table-striped table-hover table-sm table-bordered">
+            <div class="mitad">
+                <table class="table__dif">
                     <thead>
                         <tr>
-                            <th scope="col" >Procedimiento</th>                   
+                            <th class="th__table-dif" scope="col" >Procedimiento</th>                   
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="receta :${receta}">
-                            <td th:text="${receta.procedimiento}"></td>                        
+                            <td class="td__table-dif" th:text="${receta.procedimiento}"></td>                        
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
 
+
+        
         <footer th:replace="plantilla/plantilla.html :: footer"></footer>
         
     </body>

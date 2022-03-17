@@ -8,20 +8,11 @@
   height: 14%;
 }
 .navegador__ul {
-<<<<<<< HEAD
-  height:9vh;
-}
-.navegador__ul--li {
-  display:inline-block;
-  margin-top: 1.8vh;
-  margin-left: 1.5%;
-=======
   height:8vh;
 }
 .navegador__ul--li {
   display:inline-block;
   margin-left: 2%;
->>>>>>> jose
   margin-right: 1.5%;
 }
 .logo {
@@ -35,28 +26,16 @@
  height: 5vh;
 }
 .navegador__ul--input {
-<<<<<<< HEAD
-  margin-top: 1.5vh;
-  margin-left: 2vw;
-  width: 14vw;
-}
-=======
   display: inline-block;
   width: 15vw;
   margin: 10px;
   vertical-align: bottom;
 }
-
->>>>>>> jose
 .navegador__ul--input::placeholder {
   color: gray;
 }
-
-<<<<<<< HEAD
-=======
 /*--------------------------------------------------------------------------------------------------------------*/
 
->>>>>>> jose
 .lateral{
   background-color: #b4cfb0;
 }
@@ -73,30 +52,7 @@ a:link, a:visited, a:active {
   text-decoration:none;
   color:black;
 }
-
-<<<<<<< HEAD
-body {
- 
-  background-image: url("https://images.freeimages.com/images/premium/previews/3513/35135220-cookery-seamless-background.jpg");
-  background-repeat: repeat;
-  background-size: 60rem;
-}
-
-.cont{
-  display: flex;
-  width:40vw;
-  margin-left: 34vw;
-  margin-top: 16vh;
-}
-
-.cont__form{
-  display:flex;
-  flex-direction: column;
-  background-color: #94B49F;
-  padding: 2em;
-=======
 /*--------------------------------------------------------------------------------------------------------------*/
-
 body {
   background-image: url("https://images.freeimages.com/images/premium/previews/3513/35135220-cookery-seamless-background.jpg");
   background-repeat: repeat;
@@ -105,12 +61,24 @@ body {
   padding-bottom:3em;
   min-height: 100vh;
 }
-
 /*--------------------------------------------------------------------------------------------------------------*/
 .cont{
 display:flex;
 flex-wrap: wrap;
 justify-content: center;
+}
+
+.cont__section{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cont__section2{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50vw;
 }
 
 .cont__form{
@@ -121,6 +89,7 @@ justify-content: center;
   justify-content: center;
   margin: 14vh;
 }
+
 
 .cont__form2{
   width:40vw;
@@ -133,16 +102,37 @@ justify-content: center;
   margin-top:0;
 }
 
-.cont__parrafo{
-  margin-top:10vh;
+.cont__table{
   width:40vw;
-  align-items: center;
+  height: 6vh;
+  padding: 2em;
+  margin-top: 5vh;
+  margin-right: 2vw;
+  margin-left: 2vw;
   display: flex;
   flex-direction: column;
   background-color: #94B49F;
+  justify-content: center;
+}
+
+.cont__parrafo{
+  margin-top:10vh;
+  width: 30vw;
+  height: 45vh;
+  align-items: center;
+  display: flex;
+  background-color: #94B49F;
   padding: 2em;
   justify-content: center;
->>>>>>> jose
+}
+
+.parrafo{
+  display: flex;
+  border-color:#789395;
+  border-width: 2px;
+  border-style: solid;
+  background-color:#e5e3c9;
+  height: 50vh;
 }
 
 .cont__label-tittle{
@@ -150,41 +140,6 @@ font-size: 2em;
 margin:auto;
 }
 
-<<<<<<< HEAD
-.cont__form-div{
-
-}
-
-.cont__label{
-
-}
-
-
-
-
-
-.pie{
-  height: 60px;
-  width: 100%;
-  background-color: #789395;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-}
-.pie__p{
-font-family: 'Lato', sans-serif;
-margin-top: 1.7vh;
-font-size: 1.3em;
-color: black;
-}
-
-
-
-
-=======
->>>>>>> jose
 .form-label{
 display:block;
 margin-left: 15vw;
@@ -204,32 +159,12 @@ display:inline-block;
 width:10vw;
 }
 
-<<<<<<< HEAD
-.cont-table{
-border: dashed red;
-}
-
-.table{
-  display: block;
-  z-index: 5;
-  border:solid green;
-  background-color: rgb(219, 223, 191);
-}
-
-.table-th{
-display:inline-block;
-}
-
-.table-td{
-display: inline-block;
-}
-
-.table-tr{
-  background-color: aquamarine;
-}
-=======
 .button__add, .button__delete{
   background-color: #789395;
+}
+
+.button__x{
+  background-color: red;
 }
 
 
@@ -283,7 +218,15 @@ color: black;
 
 .table{
   background-color:#e5e3c9;
-  overflow: scroll;
+}
+
+.table__dif{
+  margin: 2em;
+  background-color:#b4cfb0;
+  border-style: ridge;
+  border-color:#789395;
+  border-width: 0.25em;
+  padding: 1em;
 }
 
 /*-----------------------------------------------------------*/
@@ -308,6 +251,13 @@ color: black;
 }
 
 
+.th__table-dif{
+  border-style:ridge;
+  border-color:#789395;
+  background-color:#789395;
+  }
+
+
 .td{
 border-style:solid;
 border-color:gray;
@@ -315,6 +265,14 @@ border-left: none;
 border-right:none;
 border-top:none;
 }
+
+.td__table-dif{
+  border-color:#789395;
+  border-width: 2px;
+  border-style: solid;
+  background-color:#e5e3c9;
+
+  }
 
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 .button__add3{
@@ -330,12 +288,6 @@ border-top:none;
 
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 
-.cont__parrafo{
-  background-color: #94B49F;
-}
-
-/*-----------------------------------------------------------------------------------------------------------------------------------*/
-
 h1{
   background-color: #e5e3c9;
   padding:1em;
@@ -346,4 +298,59 @@ h1{
   padding:1em;
   font-size: 1.4em;
 }
->>>>>>> jose
+
+.clase1{
+z-index:1;
+background-color: blue;
+opacity: 0.5;
+}
+
+.clase2{
+z-index:1;
+background-color: red;
+opacity: 0.5;
+}
+
+.clase3{
+z-index:1;
+background-color: green;
+opacity: 0.5;
+}
+
+.clase4{
+  opacity: 0.5;
+z-index:1;
+background-color: yellow;
+}
+
+.flex-container{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.mitad{
+  display: flex;
+  flex-direction: column;
+  width: 49vw;
+  height: 50vh;
+}
+
+/*--------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.photo__frame{
+  display: flex;
+  width: 20vw;
+  height: 20vw;
+  margin: auto;
+}
+.photo{
+  height: 100%;
+  width: 100%;
+  border: ridge #789395 0.4em;
+  background-color:#b4cfb0;
+  display: flex;
+  object-fit: cover;
+  justify-content: center;
+}

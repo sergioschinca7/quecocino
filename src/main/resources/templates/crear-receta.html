@@ -3,63 +3,16 @@
     <head th:replace="/plantilla/plantilla::head"></head>
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        
-        <aside th:replace="/plantilla/plantilla::aside"> </aside>
-=======
-        <div class="container mt-3">
-            <form
-                class="row g-3"
-                th:action="@{/receta/guardar-receta}"
-
-                method="POST"
-                enctype="multipart/form-data"
-                th:object="${recetas}"
-                >
-                <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <span th:text="${error}" ></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
->>>>>>> 2a5bab2a9d2c57a300d3742310f0df8b2c87b357
-=======
         
         <aside th:replace="/plantilla/plantilla-user::aside"> </aside>
->>>>>>> jose
         
         <div class="cont">
             <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form">
                 <p th:if="${error} != null" th:text="${error}"></p>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        <div class="container mt-3">
-            <form
-                class="row g-3"
-                th:action="@{/receta/guardar-receta}"
-
-                method="POST"
-                th:object="${recetas}"
-                >
-                <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <span th:text="${error}" ></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
->>>>>>> 68027d99311bfa44a7c16c4767e77c2759f84b40
-                <input th:field="*{id}" type="hidden"/>
-
-                <label class="cont__label-tittle">Nombre Receta</label>
-                <input type="text" th:field="*{nombre}"/><br>
-=======
-=======
->>>>>>> jose
->>>>>>> 2a5bab2a9d2c57a300d3742310f0df8b2c87b357
                 <input th:field="*{id}" type="hidden"/>
 
                 <label class="cont__label-tittle">Nombre Receta</label>
                 <input type="text" th:field="*{nombre}" class="input__tittle"/><br>
->>>>>>> jose
                 <div class="cont__form-div">
                     <table>
                         <thead>
@@ -94,20 +47,14 @@
                                 </td>
                                 <td>
                                     <button type="button"
-<<<<<<< HEAD
-=======
                                             class="button__add"
->>>>>>> jose
                                             th:attr="onclick=|agregar('ingrediente',${index.index})|">Agregar
                                     </button>
                                 </td>
 
                                 <td>
                                     <button type="button"
-<<<<<<< HEAD
-=======
                                             class="button__delete"
->>>>>>> jose
                                             th:attr="onclick=|eliminar('ingrediente',${index.index})|">Eliminar
                                     </button>
                                 </td>
@@ -116,70 +63,25 @@
                     </table>
                 </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <label class="cont__label">Procedimiento</label>
-                <textarea class="textarea__procedimiento" rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
-                <label class="cont__label">Duración</label>
-=======
-                <div class="container text-capitalize">
-
-                    <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
-
-                </div>
-                <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
-                <label>Duración</label>
->>>>>>> 68027d99311bfa44a7c16c4767e77c2759f84b40
-                <input type="text" th:field="*{duracion}"/>
-
-                <label class="cont__label">Complejidad</label>
-                <select name="complejidad" th:field="*{complejidad}">
-=======
                 <label class="cont__label">Procedimiento</label>
                 <textarea class="textarea__procedimiento" rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
                 <label class="cont__label">Duración</label>
                 <input type="text" th:field="*{duracion}" class="cont__input"/>
 
-<<<<<<< HEAD
-                    <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
-
-                </div>
-
-                <label>Foto</label>
-                <input type="file" name="archivo">
-
-                <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}">procedimiento</textarea>
-                <label>Duración</label>
-                <input type="text" th:field="*{duracion}"/>
-
-                <label>Complejidad</label>
-                <select name="complejidad" th:field="*{complejidad}">
-=======
                 <label class="cont__label">Complejidad</label>
                 <select name="complejidad" th:field="*{complejidad}" class="cont__select">
->>>>>>> jose
                     <option th:each="complejidad : ${T(com.quecomemos.enumeraciones.Complejidad).values()}" 
                             th:value="${complejidad}" th:text="${complejidad.displayName}"></option>
                 </select>
 
                 <label class="cont__label">Categoría</label>
-<<<<<<< HEAD
-                <select name="categoria" th:field="*{categoria}">
-=======
                 <select name="categoria" th:field="*{categoria}" class="cont__select">
->>>>>>> jose
                     <option th:each="categoria : ${T(com.quecomemos.enumeraciones.Categoria).values()}" 
                             th:value="${categoria}" th:text="${categoria.displayName}"></option>
                 </select>
 
                 <label class="cont__label">Valor Calórico</label>
-<<<<<<< HEAD
-                <select name="valorCalorico" th:field="*{valorCalorico}">
-=======
                 <select name="valorCalorico" th:field="*{valorCalorico}" class="cont__select">
->>>>>>> jose
                     <option th:each="valorCalorico : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
                             th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
                 </select>
