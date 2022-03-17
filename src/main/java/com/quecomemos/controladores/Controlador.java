@@ -22,12 +22,8 @@ public class Controlador {
     @GetMapping("/")
     public String index(Model model) {
 
-<<<<<<< HEAD
+        model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
 
-
-=======
-    model.addAttribute("lista", ingredienteServicio.listarAlfabeticamente());
->>>>>>> jose
         return "index.html";
     }
 }

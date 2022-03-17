@@ -3,28 +3,12 @@
     <head th:replace="/plantilla/plantilla::head"></head>
     <body>
         <nav th:replace="/plantilla/plantilla::nav"></nav>
-<<<<<<< HEAD
-        <div class="container mt-3">
-            <form
-                class="row g-3"
-                th:action="@{/receta/guardar-receta}"
-
-                method="POST"
-                enctype="multipart/form-data"
-                th:object="${recetas}"
-                >
-                <div th:if="${error}!= null" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                    <span th:text="${error}" ></span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-=======
         
         <aside th:replace="/plantilla/plantilla-user::aside"> </aside>
         
         <div class="cont">
-            <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form">
+            <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form" enctype="multipart/form-data">
                 <p th:if="${error} != null" th:text="${error}"></p>
->>>>>>> jose
                 <input th:field="*{id}" type="hidden"/>
 
                 <label class="cont__label-tittle">Nombre Receta</label>
@@ -84,7 +68,6 @@
                 <label class="cont__label">Duración</label>
                 <input type="text" th:field="*{duracion}" class="cont__input"/>
 
-<<<<<<< HEAD
                     <a th:href="@{/ingrediente/crear}">Nuevo Ingrediente</a>
 
                 </div>
@@ -100,10 +83,9 @@
 
                 <label>Complejidad</label>
                 <select name="complejidad" th:field="*{complejidad}">
-=======
+
                 <label class="cont__label">Complejidad</label>
                 <select name="complejidad" th:field="*{complejidad}" class="cont__select">
->>>>>>> jose
                     <option th:each="complejidad : ${T(com.quecomemos.enumeraciones.Complejidad).values()}" 
                             th:value="${complejidad}" th:text="${complejidad.displayName}"></option>
                 </select>
@@ -119,6 +101,10 @@
                     <option th:each="valorCalorico : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
                             th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
                 </select>
+
+                <label cont__label> Foto </label>
+                <input type="file" name="archivo">
+
 
                 <input type="submit" name="action" value="Guardar" confirm="guardar" class="input__save"/>
                 <p th:if="${error} != null" th:text="${error}"></p>
