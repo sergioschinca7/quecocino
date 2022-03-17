@@ -47,7 +47,7 @@
                 </table>
                 
                 <div class="photo__frame">
-                    <img th:if="${receta.foto ==null}" class="photo" src="/css/foto.jpeg" alt="">
+                 <!---->   <img th:if="${receta.foto ==null}" class="photo" src="/css/foto.jpeg" alt=""> --> 
                     <img th:if="${receta.foto !=null}" class="photo" th:src="@{/foto/receta} + '?id='+ ${receta.id}" alt="">  
                 </div>
             </div>
