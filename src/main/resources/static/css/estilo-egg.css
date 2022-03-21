@@ -3,28 +3,26 @@
 
 .navegador {
   background-color: #e5e3c9;
-  display: inline-block;
+  display: flex;
   width: 100%;
   height: 14%;
+  align-items: center;
 }
-.navegador__ul {
-  height:8vh;
-}
-.navegador__ul--li {
-  display:inline-block;
-  margin-left: 2%;
-  margin-right: 1.5%;
-}
+
 .logo {
-  display: inline-block;
   object-fit: cover;
   width: 10vw;
   height: 7vh;
-  margin-right: 44vw;
+  padding: 1em;
+  margin-left: 2vw;
+  margin-right: 65vw;
 }
 .icono-redsocial{
- height: 5vh;
+ height: 6vh;
+ padding: 2vh;
+ margin-right: 1vw;
 }
+
 .navegador__ul--input {
   display: inline-block;
   width: 15vw;
@@ -54,9 +52,9 @@ a:link, a:visited, a:active {
 }
 /*--------------------------------------------------------------------------------------------------------------*/
 body {
-  background-image: url("https://images.freeimages.com/images/premium/previews/3513/35135220-cookery-seamless-background.jpg");
+  background-image: url("https://cutewallpaper.org/21/background-for-youtube/French-Guy-Cooking-YouTube-Channel-Background-Art-copy-Alex.jpg");
   background-repeat: repeat;
-  background-size: 60rem;
+  background-size: 100%;
   position: relative;
   padding-bottom:3em;
   min-height: 100vh;
@@ -88,6 +86,7 @@ justify-content: center;
   padding: 3em;
   justify-content: center;
   margin: 14vh;
+  border:#789395 ridge 0.4em;
 }
 
 
@@ -98,7 +97,6 @@ justify-content: center;
   background-color: #94B49F;
   padding: 2em;
   justify-content: center;
-  margin: 30vh;
   margin-top:0;
 }
 
@@ -116,9 +114,6 @@ justify-content: center;
 }
 
 .cont__parrafo{
-  margin-top:10vh;
-  width: 30vw;
-  height: 45vh;
   align-items: center;
   display: flex;
   background-color: #94B49F;
@@ -133,6 +128,14 @@ justify-content: center;
   border-style: solid;
   background-color:#e5e3c9;
   height: 50vh;
+}
+
+.parrafo__index{
+  display: flex;
+  border-color:#789395;
+  border-width: 2px;
+  border-style: solid;
+  background-color:#e5e3c9;
 }
 
 .cont__label-tittle{
@@ -195,6 +198,7 @@ width:10vw;
 
 .input__save{
   background-color: #789395;
+  margin-top: 1em;
   font-size:1.4em;
 }
 
@@ -247,17 +251,14 @@ color: black;
 
   border-style: ridge;
   border-color: #789395;
-  border-width:0.5em;
+  border-width:0.2em;
 }
-
 
 .th__table-dif{
   border-style:ridge;
   border-color:#789395;
   background-color:#789395;
   }
-
-
 .td{
 border-style:solid;
 border-color:gray;
@@ -273,7 +274,6 @@ border-top:none;
   background-color:#e5e3c9;
 
   }
-
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
 .button__add3{
   background-color:#e5e3c9;
@@ -285,12 +285,16 @@ border-top:none;
   padding: 1em;
   border: ridge #789395 0.5em;
 }
-
 /*--------------------------------------------------------------------------------------------------------------------------------------*/
-
 h1{
   background-color: #e5e3c9;
+  display: flex;
+  width: 15vw;
+  margin: auto;
+  font-family: 'Pacifico', cursive;
+  justify-content: center;
   padding:1em;
+  border: #789395 ridge 0.2em;
 }
 
 .cont__parrafo p{
@@ -299,46 +303,19 @@ h1{
   font-size: 1.4em;
 }
 
-.clase1{
-z-index:1;
-background-color: blue;
-opacity: 0.5;
-}
-
-.clase2{
-z-index:1;
-background-color: red;
-opacity: 0.5;
-}
-
-.clase3{
-z-index:1;
-background-color: green;
-opacity: 0.5;
-}
-
-.clase4{
-  opacity: 0.5;
-z-index:1;
-background-color: yellow;
-}
-
 .flex-container{
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .mitad{
   display: flex;
   flex-direction: column;
   width: 49vw;
   height: 50vh;
 }
-
 /*--------------------------------------------------------------------------------------------------------------------------------------------*/
-
 .photo__frame{
   display: flex;
   width: 20vw;
