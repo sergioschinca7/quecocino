@@ -44,7 +44,7 @@ public class IngredienteControlador {
             model.put("error", e.getMessage());
             return "ingrediente-form.html";
         }
-        return "redirect:/receta/crear-receta";
+        return "redirect:/ingrediente/crear";
     }
 
 }

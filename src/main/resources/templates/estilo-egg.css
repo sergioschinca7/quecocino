@@ -1,0 +1,150 @@
+* {
+}
+/*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+.navegador {
+  background-color: #e5e3c9;
+  border-style: dashed;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.logo {
+  display: inline-block;
+  object-fit: cover;
+  width: 10vw;
+  height: 7vh;
+  margin-right: 40vw;
+}
+
+.icono-redsocial{
+    display:inline-block;
+    height:2.7vw;
+}
+
+.navegador__ul--li {
+  display: inline-block;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.navegador__ul--input {
+    font-size: 1,5em;
+    float: right;
+    width: 12vw;
+    height: 2vh;
+    margin-bottom: 0.7em;
+}
+
+.navegador__ul--input::placeholder {
+  color: gray;
+}
+
+
+.lateral {
+  width: 100%;
+  height: 6vh;
+  margin: 0;
+
+  background-color: #b4cfb0;
+
+
+  border-color: #789395;
+  font-size: 4vh;
+  position: sticky;
+  box-sizing: border-box;
+}
+
+.lateral__li {
+  font-family: 'Dancing Script', cursive;
+  display: inline-block;
+  margin-left: 9vw;
+}
+
+a:link, a:visited, a:active {
+  text-decoration:none;
+  color:black;
+}
+
+
+.lateral__li:visited, .lateral__li:link, .lateral__li:active{
+  text-decoration: none;
+}
+
+.pie{
+  width: 100%;
+  height: 5vh;
+  margin: 0;
+
+  background-color: #b4cfb0;
+
+
+  border-color: #789395;
+  font-size: 3.5vh;
+  position: absolute;
+  bottom:0;
+  box-sizing: border-box;
+}
+
+.pie__li{
+display:inline-block;
+margin-left: 9.8vw;
+font-family: 'Lato', sans-serif;
+}
+
+.cuerpo{
+  background-color: gainsboro;
+} 
+
+.cont-form{
+  display:inline-block;
+  position: absolute;
+  margin-left: 30vw;
+  margin-top: 10vh;
+  background-color: antiquewhite;
+  height: 40vh;
+  width: 40vw;
+  border: dashed darkgreen;
+}
+
+.form-label{
+display:block;
+margin-left: 15vw;
+}
+
+.form-input{
+display:block;
+margin-left: 15vw;
+}
+
+.form-select{
+  display: block;
+}
+
+.form-select_optional{
+display:inline-block;
+width:10vw;
+}
+
+.cont-table{
+border: dashed red;
+}
+
+.table{
+  display: block;
+  z-index: 5;
+  border:solid green;
+  background-color: rgb(219, 223, 191);
+}
+
+.table-th{
+display:inline-block;
+}
+
+.table-td{
+display: inline-block;
+}
+
+.table-tr{
+  background-color: aquamarine;
+}

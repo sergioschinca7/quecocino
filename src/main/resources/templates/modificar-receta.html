@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org/">
-    <head th:replace="/plantilla/plantilla::head"></head>
-    <body>
-        <nav th:replace="/plantilla/plantilla::nav"></nav>
-        <div class="container mt-3">
-            <form
-                class="row g-3"
-                th:action="@{/receta/guardar-receta}"
 
-                method="POST"
-                th:object="${recetas}"
-                >
-                <p th:if="${error} != null" th:text="${error}"></p>
+    <head>
+        <title>Modificar receta</title>
+
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" th:href="@{/css/agregar-eliminar.css}">
+        <link rel="stylesheet" th:href="@{/css/normalize.css}">
+        <link rel="stylesheet" th:href="@{/css/estilo-egg.css}">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+         ></script>
+        <script src="/js/index.js"></script>
+    </head>
+    
+    <body>
+
+        <nav th:replace="/plantilla/plantilla::nav"></nav>
+
+        <aside th:replace="/plantilla/plantilla::aside"> </aside>
+
+        <div class="cont">
+            <form th:action="@{/receta/guardar-receta}" method="POST" th:object="${recetas}" class="cont__form" enctype="multipart/form-data">
                 <input th:field="*{id}" type="hidden"/>
 
-
-                <label>Nombre Receta</label>
-                <input type="text" th:field="*{nombre}" th:text="*{nombre}"/>
-                <div class="container text-capitalize">
-                    <table
-                        class="table table-striped table-hover table-sm table-bordered"
-                        >
+                <label class="cont__label-tittle">Nombre Receta</label>
+                <input type="text" th:field="*{nombre}" th:text="*{nombre}" class="input__tittle"/>
+                <div class="cont__form-div">
+                    <table>
                         <thead>
                             <tr>
                                 <th scope="col">Ingrediente</th>
@@ -37,7 +48,8 @@
 
                                 <td>
                                     <select th:field="*{ingredientes[__${index.index}__].nombreIngrediente}"
-                                            th:id="'nombreIngrediente'+${index.index}">
+                                            th:id="'nombreIngrediente'+${index.index}"
+                                            class="form__select">
                                         <option value=""> </option>                                                                         
                                         <option th:each=" l :${lista}" th:text="${l.nombreIngrediente}"
                                                 th:value="${l.nombreIngrediente}"></option>
@@ -47,17 +59,20 @@
 
                                 <td>
                                     <input type="text"
+                                           class="input__cantidad"
                                            th:field="*{cantidad[__${index.index}__]}"
                                            th:id="'cantidad'+${index.index}">    
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary"
+                                    <button type="button" 
+                                            class="button__add"
                                             th:attr="onclick=|agregar('ingrediente',${index.index})|">Agregar
                                     </button>
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-danger"
+                                    <button type="button" 
+                                            class="button__delete"
                                             th:attr="onclick=|eliminar('ingrediente',${index.index})|">Eliminar
                                     </button>
                                 </td>
@@ -66,37 +81,40 @@
                     </table>
                 </div>
 
-                <label>Procedimiento</label>
-                <textarea rows = "5" cols = "50" th:field="*{procedimiento}" th:text="*{procedimiento}">procedimiento</textarea>
-                <label>Duración</label>
-                <input type="text" th:field="*{duracion}" th:text="*{duracion}"/>
+                <label class="cont__label">Procedimiento</label>
+                <textarea class="textarea__procedimiento" rows = "5" cols = "50" th:field="*{procedimiento}" th:text="*{procedimiento}">procedimiento</textarea>
 
-                <label>Complejidad</label>
-                <select name="complejidad" th:field="*{complejidad}">
+                <label class="cont__label">Duración</label>
+                <input type="text" th:field="*{duracion}" th:text="*{duracion}" class="cont__input"/>
+
+                <label class="cont__label">Complejidad</label>
+                <select name="complejidad" th:field="*{complejidad}" class="cont__select">
                     <option th:each="complejidad : ${T(com.quecomemos.enumeraciones.Complejidad).values()}" 
                             th:value="${complejidad}" th:text="${complejidad.displayName}"></option>
                 </select>
 
-                <label>Categoría</label>
-                <select name="categoria" th:field="*{categoria}">
+                <label class="cont__label">Categoría</label>
+                <select name="categoria" th:field="*{categoria}" class="cont__select">
                     <option th:each="categoria : ${T(com.quecomemos.enumeraciones.Categoria).values()}" 
                             th:value="${categoria}" th:text="${categoria.displayName}"></option>
                 </select>
 
-                <label>Valor Calórico</label>
-                <select name="valorCalorico" th:field="*{valorCalorico}">
+                <label class="cont__label">Valor Calórico</label>
+                <select name="valorCalorico" th:field="*{valorCalorico}" class="cont__select">
                     <option th:each="valorCalorico : ${T(com.quecomemos.enumeraciones.ValorCalorico).values()}" 
                             th:value="${valorCalorico}" th:text="${valorCalorico.nombre}"></option>
                 </select>
 
-                <input type="submit" name="action" value="Guardar" confirm="guardar"/>
-                <p th:if="${error} != null" th:text="${error}"></p>
+                <label class="cont__label"> Foto </label>
+                <input type="file" name="archivo" class="cont__input">
+
+                <input type="submit" name="action" value="Guardar" confirm="guardar" class="input__save"/>
+                <p class="cont__label-red" th:if="${error} != null" th:text="${error}"></p>
 
             </form>
         </div>
 
-        <div class="container text-capitalize">
-        </div>
+        <footer th:replace="plantilla/plantilla.html :: footer"></footer>
+
     </body>
 </html>
-

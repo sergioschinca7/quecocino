@@ -72,7 +72,7 @@ public class PersonaServicioImpl implements PersonaServicio, UserDetailsService 
         Persona personaFinal = validarPersona(persona, contrasena2);
 
         personaFinal.setContrasena(encoder.encode(personaFinal.getContrasena()));
-        Role role = new Role(1, "user");
+        Role role = new Role(1, "ROLE_USER");
 
         rolesRepositorio.save(role);
 
